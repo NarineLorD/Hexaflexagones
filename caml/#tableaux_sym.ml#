@@ -15,6 +15,7 @@ on peut représenter n'importe quel flexagone de taille au plus n.
  *)
 
 
+
 let rotation lsym k = {taille = lsym.taille;
                        liste = lsym.liste;
                        debut = lsym.debut + k mod lsym.taille;
