@@ -1,0 +1,11 @@
+(*
+Ce script doit permettre de calculer plus ou moins 
+efficacement le nombre de flexagones d'ordre arbitraire.
+ *)
+
+
+let a = flexagone__flexagone_trois ;;
+
+
+
+
