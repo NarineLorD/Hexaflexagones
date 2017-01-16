@@ -1,0 +1,12 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}
+\contentsline {paragraph}{Avertissement}{2}
+\contentsline {chapter}{\numberline {2}Repr\IeC {\'e}sentations}{3}
+\contentsline {section}{\numberline {2.1}Lesquelles?}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {chapter}{\numberline {3}R\IeC {\'e}sultat pr\IeC {\'e}liminaire}{4}
+\contentsline {section}{\numberline {3.1}D\IeC {\'e}nombrement des flexagones}{4}
+\contentsline {subsection}{\numberline {3.1.1}Identification aux nombres de catalan}{4}
+\contentsline {section}{\numberline {3.2}Action du groupe di\IeC {\'e}dral}{4}
+\contentsline {paragraph}{}{4}

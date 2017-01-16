@@ -1,0 +1,56 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Raphaël Wormser}
+\title{Construction d'hexaflexagones}
+\begin{document}
+	\maketitle
+	\titlepage
+	
+	\tableofcontents
+	
+	\chapter{Introduction}
+		\paragraph{Avertissement}
+		Le nombre d'article dédié au sujet est relativement limité, les articles techniques francophones sont quasiment introuvable, il n'existe donc pas de terminologie arrêtée en français, ainsi certaines dénominations que j'utilise seront directement tirées des expression anglaises.
+				
+	
+	
+	
+	\chapter{Représentations}
+	\section{Lesquelles?}
+	\paragraph{}
+	On pourrait disserter longuement sur la meilleure façon de représenter un hexaflexagone, il en ressort pourtant quelques unes particulièrement adaptées à notre étude.\\
+	On souhaite avoir devant soit une image complète et univoque de chaque flexagone. On peut d'abord dessiner leurs patrons, cela présente l'avantage de rester très proche de l'objet fini, mais leur taille grandi rapidement et il est difficile de trouver des liens entre les flexagones ainsi. Pire, on voudrait se passer de l'étiquetage de chaque triangle, mais on y perd l'unicité de la représentation, en effet, à partir de l'ordre 7, certains patrons peuvent se plier de différentes façon, et forment ainsi des flexagones radicalement différent.\\\\
+	\paragraph{}
+	L'idée de faire des graphes avec les flexagones vient assez naturellement: chaque couple de couleur atteint peut être un noeud, chaque nœud est lié si et seulement si on peut passer de l'un à l'autre en 1 flex. Le graphe ainsi obtenu est appelé Traverse de Tuckerman (TT).
+	
+	\paragraph{}
+	L'autre graphe associé au flexagone 
+
+
+
+	\chapter{Résultat préliminaire}
+	\section{Dénombrement des flexagones} 
+	\paragraph*{}
+		On doit compter le nombre de façon de trianguler un n-gone régulier.
+		Soit la fonction suivante
+		\[ 
+			C:\ n \mapsto \left\{ \begin{array}{ll}
+			         \frac{1}{n+1}\left( \begin{array}{ll}
+			2n \\
+			 n \end{array} \right) & \mbox{si $ n \in \mathbb{N}$}\\
+			         0 & \mbox{sinon}.\end{array} \right.
+		\]
+		qui vaut le $n^{e}$ nombre de Catalan si n est entier, 0 partout ailleurs.
+
+	\subsection{Identification aux nombres de catalan}
+	Il est connu que le nombre de triangulations du n-gone régulier est exactement $C(n)$. Voici une explication succinte.\\	
+	
+	\section{Action du groupe diédral}
+		\paragraph{}
+			Il est clair que si deux triangulations se déduisent l'une de l'autre par une rotation ou une symétrie, elles définissent le même flexagone. Il est donc nécessaire de calculer $|F(n)/D_{n}|$ où $D_{n}$ est le groupe diédral d'ordre $2n$.
+\end{document}
