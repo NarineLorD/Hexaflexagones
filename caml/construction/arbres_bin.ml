@@ -42,8 +42,11 @@ let rec set_leaves_aux f k = match f with
   |Leaf(a) -> Leaf(k)
   |Node(gauche,x,droite) -> Node(set_leaves_aux gauche k,k, set_leaves_aux droite (k+1));;
 
+let set_root f k = match f with
+  |Leaf(_) -> Leaf(k)
+  |Node(a,b,c) -> Node(a,k,c);;
 (*numérote correctement les étiquettes d'un flexagone : la racine est à 0*)
-let set_leaves f = set_leaves_aux f 0;;
+let set_leaves f = set_root (set_leaves_aux f 1) 0;;
 
 
 (*concatène un couple de flexagones (f1,f2) sur la feuiile n°k dans le sens horaire si f est correctement numéroté*)
@@ -57,7 +60,7 @@ let rec concat_flex_aux f0 k (f1,f2) =
 let concat_flex f k (f1,f2) = set_leaves (concat_flex_aux f k (f1,f2));; 
 
 
-let ajoute_face f k = concat_flex f k (Leaf(0),Leaf(0));;
+let ajoute_face f k = set_leaves concat_flex f k (Leaf(0),Leaf(0));;
 
 
 
@@ -73,6 +76,8 @@ let rec fais_tourner f k = match f with
 			      let part = fais_tourner droite (k-og) in
 			      concat_flex part 1 (Leaf(x),gauche);;
 
+
+
   
 
 let root t = match t with
@@ -82,7 +87,7 @@ let root t = match t with
 
 
 let rec gauche_droite b = match b with
-  |Leaf(a) -> a
+  |Leaf(a) -> [a]
   |Node(g,_,d) ->gauche_droite g @ gauche_droite d;;
 
 let bords b = let r = root b in
@@ -90,3 +95,7 @@ let bords b = let r = root b in
               r::t;;
 
 
+let (flex:flexagone) = Node(Node(Leaf(17),42,Leaf(33)),13,Leaf(12));;
+
+set_leaves flex;;
+ajoute_face flex 1;;
