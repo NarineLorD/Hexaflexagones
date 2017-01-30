@@ -1,0 +1,19 @@
+(*Interface graphique écrite avec le module Tcl/Tk*)
+let a = 42;;
+open Tk ;;
+let top = openTk () ;;
+Wm.title_set top "Application 9" ;;
+let n = Entry.create ~width:10 ~relief:`Sunken top ;;
+(* On pressing the button you exit,
+   and the string you have entered
+   is displayed on standard output.*)
+let b = Button.create
+    ~text:"The end"
+    ~command:(fun () ->
+      Printf.printf "%s\nBye.\n" (Entry.get n) ;
+      closeTk () ; exit 0)
+    top ;;
+(* Again you fave to coe the widgets *)
+pack [coe n; coe b] ;;
+
+let _ = Printexc.print mainLoop ();;
