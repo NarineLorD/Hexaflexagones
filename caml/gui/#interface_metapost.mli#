@@ -5,16 +5,15 @@ Ce fichier contient les valeurs des fonctions permettant cette écriture
 
 
 (*type des points graphiques*)
+type flexagone;;
 type point;;
-
+type 'a strip;;
 (*permet de définir l'orientation d'une figure*)
 type orientation;;
 
 
-val cree_fichier : string -> unit;;
+val cree_fichier : string -> unit
 
-val triangle_equi : point -> orientation -> unit;;
-
-
-
+val triangle_equi : point -> orientation -> unit
+val strip_hexaflexagone:flexagone strip -> 
 
