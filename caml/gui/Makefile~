@@ -1,0 +1,3 @@
+#Makefile pour l'interface graphique du programme de flexagones
+
+interface_tk::ocamlc -o -I +labltk labltk.cma
