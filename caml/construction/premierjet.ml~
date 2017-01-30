@@ -1,3 +1,8 @@
+(*
+Premier essai:
+implémentation de flexagones par des tableaux.
+ *)
+
 let array_rot_unit t =
   let n = Array.length t in
   let a = ref t.(n-1) in

@@ -16,3 +16,5 @@ val cree_fichier : string -> unit;;
 val triangle_equi : point -> orientation -> unit;;
 
 
+
+
