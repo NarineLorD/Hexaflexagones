@@ -1,7 +1,12 @@
-#Makefile pour l'interface graphique du programme de flexagones
-labltk.cma!: 
-	ocamlfind -I +labltk
+#Makefile pour l'interface graphique du programme 
+all: lanceur
+
+lanceur:
+	labltk lanceur.ml
+
+%.zo: %.ml
+	ocamlc -c $<
 
 
-interface_tk::  labltk.cma
-	ocamlfind ocamlc -oI lanceur +labltk labltk.cma
+%.zi: %.mli
+	ocamlc -c $<
