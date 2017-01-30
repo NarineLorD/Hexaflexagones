@@ -1,0 +1,8 @@
+%.zo: %.ml
+	camlc -c $<
+
+%.zi: %.mli
+	camlc -c $<
+
+tritest: fileprio.zo tri.zo tritest.zo
+	camlc -o tritest fileprio.zo tri.zo tritest.zo
