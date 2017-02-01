@@ -13,6 +13,7 @@
 	 de Mickaël Launay sont d'une qualité que je ne pourrait égaler dans un compte-rendu écrit.
 	
 	\section{Représentation}
+	\subsection{Triangulations de polygones}
 		En numérotant chaque face du flexagone, il est assez naturel de construire le graphe de relation suivant:
 		
 		\begin{list}{•}{}
@@ -29,11 +30,11 @@
 		        \draw (-30+120*\x:5) node{\x}-- (-30+120*\x:5);
 				};
 		\end{tikzpicture}
-		\\
+		
 		\begin{tikzpicture}[thick,scale=0.4]
 		    \foreach \x in {1,2,...,4} {
 		        \draw (90*\x:4) -- (90+90*\x:4);
-		        \draw (90*\x:5) node{\x}-- (90*\x:5);
+		        \draw (90*\x:5) node{\x};
 				};
 				\draw (90:4) -- (270:4);
 		\end{tikzpicture}
@@ -41,7 +42,7 @@
 		\begin{tikzpicture}[thick,scale=0.5]
 		    \foreach \x in {1,2,...,5} {
 		        \draw (18+72*\x:4) -- (18+72+72*\x:4);
-		        \draw (18+72*\x:4.5) node{\x}-- (18+72*\x:4.5);
+		        \draw (18+72*\x:4.5) node{\x};
 				};
 				\draw (90:4) -- (306:4);		
 				\draw (90:4) -- (234:4);
@@ -49,16 +50,43 @@
 	\end{center}
 \newpage
 	\paragraph{}
-		On observe de manière générale que ces graphes sont des triangulations de polygones, ici représentés réguliers. En effet, l'opération qui consiste à ajouter une face au flexagone se représente de façon très agréable:\\
-		Il suffit d'accoler un triangle supplémentaire à la triangulation.
+		On observe de manière générale que ces graphes sont des triangulations de polygones, ici représentés réguliers. En effet, l'opération qui consiste à ajouter une face au flexagone se représente de façon très agréable:
+		\paragraph*{}
+		Il suffit d'accoler un triangle supplémentaire à la triangulation:\\ \\
 	
 		\begin{tikzpicture}[thick,scale=0.5]
 		    \foreach \x in {1,2,...,5} {
 		        \draw (18+72*\x:4) -- (18+72+72*\x:4);
-		        \draw (18+72*\x:4.5) node{\x}-- (18+72*\x:4.5);
+		        \draw (18+72*\x:4.5) node{\x};
 				};
 				\draw (90:4) -- (306:4);		
 				\draw (90:4) -- (234:4);
+				
+				\draw (4.2,4.6) node{6};
+				\draw (4.2,4.2) -- (4.2,2.2);
+				\draw (4.2,4.2) -- (1, 4.2);
 		\end{tikzpicture}
-
+		donne
+		\begin{tikzpicture}[thick,scale=0.5]
+		    \foreach \x in {1,2,...,6} {
+		        \draw (-30+60*\x:4) -- (30+60*\x:4);
+		        \draw (30+60*\x:4.5) node{\x};
+				};
+				\draw (90:4) -- (270:4);		
+				\draw (90:4) -- (210:4);
+				\draw (90:4) -- (330:4);
+		\end{tikzpicture}\\ \\ \\
+	
+	Encore mieux: avec cette représentation les seuls positions sur lesquelles on peut ajouter de nouvelles faces sont les côtés du polygone.\\
+	Le flexagone a 3 faces (d'ordre 3) admet une représentation triangulaire\\
+	Le caractère de triangulation est transmis par l'ajout de face.\\
+	On peut donc représenter chaque flexagone par une triangulation de polygone régulier	
+	\subsection{Arbres binaires entiers}
+		\paragraph{}
+			Cette représentation par les triangulations est très maniable sur le papier, elle permet entre autre de  dénombrer les flexagones. Il faut par contre pouvoir les manipuler en machine.
+		\paragraph*{}
+			Pour cela, on va représenter les triangulations par des arbres binaires entiers, construits comme suit:\\
+			
+			
+			
 \end{document}
