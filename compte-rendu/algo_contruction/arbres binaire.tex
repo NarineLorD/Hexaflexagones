@@ -7,6 +7,29 @@
 \usepackage{hyperref}
 
 \begin{document}
+
+%Définitions des fonctions pour affichier les triangulations de flexagones
+\def\hepta{
+    \coordinate (A) at (-0.76,1.54);
+    \coordinate (B) at (-0.76,0.69);
+    \coordinate (C) at (-0.10,0.16);
+    \coordinate (D) at (0.73,0.35);
+    \coordinate (E) at (1.1,1.11);
+    \coordinate (F) at (0.73,1.88);
+    \coordinate (G) at (-0.10,2.07);
+	\draw(A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- cycle;}
+
+\newcommand{\polygon}[1]{%
+	\def\N {#1}
+    \foreach \x in {1,2,...,#1} {
+        \draw ((360/#1)*\x - 30 :4) -- (90+(360/#1)*\x:4);
+        \draw (-30+120*\x:5) node{\x}-- (-30+(360/#1)*\x:5);
+	};
+}
+\newcommand{\slice}[1]{%
+    \hepta
+    \draw \foreach \x/\y in {#1} {(\x)--(\y)};}
+
 \paragraph{Conseil au lecteur}
 	Si vous n'êtes pas familier avec les flexagones, les 
 	\href{https://www.youtube.com/playlist?list=PLNefH6S6myiO_5HBDdtP_r_LlCcVwA04I}{vidéos} 
@@ -87,6 +110,8 @@
 		\paragraph*{}
 			Pour cela, on va représenter les triangulations par des arbres binaires entiers, construits comme suit:\\
 			
-			
+		\begin{tikzpicture}
+		    \slice{A/C,C/E,E/G,C/G};
+		\end{tikzpicture}
 			
 \end{document}
