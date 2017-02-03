@@ -1,7 +1,7 @@
 %.zo: %.ml
-	camlc -c $<
+	ocamlc -c $<
 
 %.zi: %.mli
-	camlc -c $<
+	ocamlc -c $<
 
 flexagones.zo: flexagones.ml flexagones.zi
