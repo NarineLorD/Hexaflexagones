@@ -21,14 +21,14 @@ let ajoute_face f a b =
   {ordre = f.ordre+1; aretes = (a,b)::f.aretes};;
 
 
-let tourne f k = 
+let rotation f k = 
   let n = ordre f in
   let rec tourne_aux l = match l with
     |[] -> []
     |(x,y)::r -> ((x+k) mod n, (y+k) mod n)::(tourne_aux r) in
   {ordre = n; aretes = tourne_aux f.aretes};;
 
-let retourne f = 
+let symetrie f = 
   let n = ordre f in
   let rec retourne_aux l = match l with
     |[] -> []

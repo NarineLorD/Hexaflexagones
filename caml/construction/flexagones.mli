@@ -32,10 +32,10 @@ flexagone obtenu en ajoutant une face à la kième position disponible.
   (*
 Pour un entier k et un flexagone f, rotation k f renvoie f "trouné" de 2*k*pi/n rad
    *)
-  val tourne: flexagone -> int -> flexagone
+  val rotation: flexagone -> int -> flexagone
                                     
   (*
 retourne f renvoie le symetrique du flexagone f
    *)
-  val retourne: flexagone -> flexagone
+  val symetrie: flexagone -> flexagone
 

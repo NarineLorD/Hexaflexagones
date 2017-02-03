@@ -1,7 +1,12 @@
-%.zo: %.ml
+%.cmo: %.ml
 	ocamlc -c $<
 
-%.zi: %.mli
+%.cmi: %.mli
 	ocamlc -c $<
 
-flexagones.zo: flexagones.ml flexagones.zi
+
+
+build_flexagons: flexagones.cmo flexagones.cmi
+		ocamlc -o build_flexagons build_flexagons.ml
+
+flexagones: flexagones.ml flexagones.mli
