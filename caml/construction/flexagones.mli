@@ -5,8 +5,7 @@ Ici sont les opérations de base autorisées
 
 Ces fonctions sont là pour une implantation persistante.
 *)
-module Flexagones:
-sig 
+ 
   type flexagone
          
   (*
@@ -27,7 +26,7 @@ Pour chaque flexagone f d'ordre n, il est possible d'ajouter un face
 Ces positions sont ordonnées, et ajoute_face flexagone k renvoie le 
 flexagone obtenu en ajoutant une face à la kième position disponible.
    *)
-  val ajoute_face : flexagone -> k -> flexagone
+  val ajoute_face : flexagone -> int -> int -> flexagone
                                         
                                         
   (*
@@ -39,5 +38,4 @@ Pour un entier k et un flexagone f, rotation k f renvoie f "trouné" de 2*k*pi/n
 retourne f renvoie le symetrique du flexagone f
    *)
   val retourne: flexagone -> flexagone
-                               
-end
+
