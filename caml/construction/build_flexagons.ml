@@ -19,7 +19,12 @@ let rec appartient x l = match l with
   |y::r -> x=y || appartient x r;;
 
 
-let equiv f g = appartient f (classe g);;
+let equiv_naif f g = appartient f (classe g);;
+
+let check_rotation f k = 
+  let n = ordre f in
+  
+
 
 
 
