@@ -41,6 +41,10 @@ let rec map ab f = match ab with
   |Vide -> Vide
   |Node(g,x,d) -> Node(map g f, f x, map d f);;
 
+let rec for_all f ab = match ab with
+  |Vide -> true
+  |Node(g,x,d) -> f x && for_all f g && for_all f d;;
+
 
 module Abr = struct
   type 'a abr = 'a btree

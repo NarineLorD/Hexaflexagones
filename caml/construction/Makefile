@@ -1,2 +1,2 @@
 build_flexagons: 
-	ocamlbuild build_flexagons.ml
+	ocamlbuild build_flexagons.native

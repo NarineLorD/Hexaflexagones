@@ -32,5 +32,11 @@ let symetrie f =
   {ordre=n; aretes=map f.aretes sym};;
 
 let equiv f g = 
-  (ordre f = ordre g) && for_all (Abr.est_dans f.aretes) g.aretes);;
+  (ordre f = ordre g) && for_all (Abr.est_dans f.aretes)  g.aretes;;
 
+let check_rotation f k = 
+  for_all (Abr.est_dans f.aretes) (rotation f k).aretes;;
+
+let check_symetrie f k = 
+  let n = ordre f in
+  for_all (Abr.est_dans f.aretes) (map f.aretes (fun (x,y) -> ((n-x-k-k) mod n,(n-x-k-k) mod n)) );;

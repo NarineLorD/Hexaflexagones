@@ -7,6 +7,7 @@ val infixe: 'a btree -> 'a list
 val prefixe: 'a btree -> 'a list
 val postfixe: 'a btree -> 'a list
 val map: 'a btree -> ('a -> 'b) -> 'b btree
+val for_all: ('a -> bool) -> 'a btree -> bool
 
 module Abr:sig
   type 'a abr = 'a btree
