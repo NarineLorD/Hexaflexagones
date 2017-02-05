@@ -62,7 +62,14 @@ let rec fais_tourner f k = match f with
 			      else
 			        let part = fais_tourner droite (k-og) in
 			        concat_flex part 1 (Leaf(x),gauche);;
-  
+(* Je suis convaincu que l'algorithme auquel je pense fonctionne, il suffit de l'implémenter mais
+le démontrer semble ardu puisque je ne suis pas au clair sur les propriétés exactes que j'attend de lui*)
+
+
+
+let rec retourne f = match f with
+  |Node(gauche, x, droite) -> Node(retourne droite, x, retourne gauche)
+  |_ -> f;;
 
 
   
@@ -82,7 +89,23 @@ let bords b = let r = root b in
               r::t;;
 
 
-let (flex:flexagone) = Node(Node(Leaf 1, 2, Leaf 3), 4, Leaf 5);;
+
+let gauche_droite btree = 
+  let rec gd_aux b l = match b with
+    |Leaf (x) -> x::l
+    |Node(gauche,_,droite) -> let fin = gd_aux droite l in
+                              gd_aux gauche fin
+  in
+  match btree with
+  |Leaf(x) -> [x]
+  |Node(_,x,_) -> x::gd_aux btree [];;
+
+
+let (flex:flexagone) = Node(Node(Leaf 1, 2, Leaf 3), 4, Node(Leaf 5, 6, Leaf 7));;
 ordre flex;;
-fais_tourner flex 6;;
+fais_tourner flex 2;;
 ajoute_face flex 1;;
+
+retourne flex;;
+
+gauche_droite (fais_tourner flex 1);;
