@@ -2,11 +2,11 @@
 all: lanceur
 
 lanceur:
-	labltk lanceur.ml
+	ocamlopt -c -I +labltk lanceur.ml
 
-%.zo: %.ml
+%.cmo: %.ml
 	ocamlc -c $<
 
 
-%.zi: %.mli
+%.cmi: %.mli
 	ocamlc -c $<
