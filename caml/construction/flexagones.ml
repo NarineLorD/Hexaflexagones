@@ -10,7 +10,7 @@ type flexagone = {ordre:int;
                   aretes:(int*int) Abr.abr};;
 
 
-let flexagone_trois = {ordre=3; aretes=Abr.empty ()};;
+let f3 () = {ordre=3; aretes=Abr.empty ()};;
 
 
 let ordre f = f.ordre;;
@@ -40,3 +40,4 @@ let check_rotation f k =
 let check_symetrie f k = 
   let n = ordre f in
   for_all (Abr.est_dans f.aretes) (map f.aretes (fun (x,y) -> ((n-x-k-k) mod n,(n-x-k-k) mod n)) );;
+

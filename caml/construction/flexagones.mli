@@ -3,7 +3,8 @@ structure abstraite des flexagones
  *)
 
 type flexagone
-       
+ 
+val f3: unit -> flexagone
 val ordre: flexagone -> int
 val ajoute_face: flexagone -> (int*int) -> flexagone
 val rotation: flexagone -> int -> flexagone
