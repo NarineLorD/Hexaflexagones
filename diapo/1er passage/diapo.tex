@@ -31,8 +31,8 @@
 
 	\frame{{Plan}\tableofcontents}
 	
-	\section{I.Introduction}
-		\subsection{I.1/Historique}
+	\section{Introduction}
+		\subsection{(bref) Historique}
 		\begin{frame}{Un bref historique}
 
 			\begin{list}{Intro}{}
@@ -42,5 +42,102 @@
 			\end{list}
 		\end{frame}
 		
+		\subsection{Démonstration/Mise en évidence}
+		\begin{frame}{(Démonstration)}
+			METTRE 3 4 PHOTOS DE FLEXAGONES POUR MONTRER CE QU'IL SE PASSE\\
+			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
+		\end{frame}
+		\begin{frame}{(Démonstration)}
+			METTRE 3 4 PHOTOS DE FLEXAGONES POUR MONTRER CE QU'IL SE PASSE\\
+			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
+		\end{frame}
+		\begin{frame}{(Démonstration)}
+			METTRE 3 4 PHOTOS DE FLEXAGONES POUR MONTRER CE QU'IL SE PASSE\\
+			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
+		\end{frame}
+		\begin{frame}{(Démonstration)}
+			METTRE 3 4 PHOTOS DE FLEXAGONES POUR MONTRER CE QU'IL SE PASSE\\
+			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
+		\end{frame}
+		\begin{frame}{(Démonstration)}
+			METTRE 3 4 PHOTOS DE FLEXAGONES POUR MONTRER CE QU'IL SE PASSE\\
+			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
+		\end{frame}
 		
+		\begin{frame}{Ajout de faces}
+		IL FAUT MONTRER QU'ON PEUT AJOUTER DES FACES ET QUE C'EST COOL !!
+		\end{frame}
+		
+		\subsection{Objectifs}
+		\begin{frame}{Objectifs}
+			Programmer un logiciel donnant les patrons d'hexaflexagones
+		\end{frame}
+		
+		
+	\section{Préliminaire}
+	
+		\subsection{Représentations}
+		
+		\subsubsection{Patrons}
+		\begin{frame}{Patrons}
+			IMAGE DE PATRON ICI
+		\end{frame}
+		
+		\begin{frame}{Problèmes}
+			PRATIQUE NI POUR LA THEORIE NI A REPRESENTER EN MACHINE A PRIORI
+		\end{frame}
+				
+		\subsubsection{Graphes}
+		\begin{frame}{Tuckerman Traverse}
+			GRAPHE DES POSITIONS (A/B) -- (B/C) -- (C/A) -- CYCLE
+		\end{frame}		
+		
+		\begin{frame}{Triangulations}
+			TRIANGULATIONS ICI C GENIAL		
+		\end{frame}
+		
+		\subsection{Dénombrement}
+		\begin{frame}{Nombres de Catalan}
+			METTRE UN IMAGE POUR JUSTIFIER LES NOMBRES DE CATALAN SUR LES TRIANGULATIONS DE POLYGONES ET PUIS VOILÀ
+		\end{frame}
+		\begin{frame}{Groupe diédral}
+			GROUPE DIÉDRAL POUR LES TRIANGULATIONS
+		\end{frame}
+		
+		\begin{frame}{Action de groupe}
+			\begin{definition}
+			Pour un ensemble X, un groupe G défini naturellement la relation d'équivalence sur X par
+			\[
+				\forall x,y \in x, x \equiv y \Leftrightarrow \exists g \in G, x=g.y
+			\]
+			\end{definition}
+			
+			ON ETUDIE Tn SOUS Dn
+		\end{frame}
+		\begin{frame}{Lemme de Burnside}
+			\begin{theorem}{Lemme de Burnside (dû à Cauchy)}
+				G groupe, X un ensemble fini, alors
+				\[
+				\mid X/G \mid = \sum_{g\in G}{\mid Fix(g) \mid}
+				\]
+				où $Fix(g) = \{x\in X, g.x = x\}$ est l'ensemble des éléments de X invariants par g.
+			\end{theorem}
+		\end{frame}
+		
+		\begin{frame}{Application au dénombrement}
+			MONTRER ASSEZ VITE COMMENT LES ROTATIONS FONCTIONNENT (CENTRE DU POLYGONE) ET PASSER SUR LES SYMÉTRIES (SANS DOUTE TROP LONG)
+		\end{frame}
+		
+		\begin{frame}{Finalement}
+		On a compté nos flexagones
+		{\Large
+		\[
+			\mid F_{n} \mid = \frac{1}{n}C_{n-2} + \frac{1}{2}C_{\frac{n}{2}-1} + \frac{2}{3}C_{\frac{n}{3}-1}
+		\]
+		}
+		\end{frame}		
+		
+		
+	\section{En machine}
+	blablabla
 \end{document}
