@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usetheme{Antibes}
 \usepackage{wrapfig}
+\usepackage{tikz}
 \usecolortheme[named=Maroon]{structure}
 \graphicspath{{Images/}}
 
@@ -80,16 +81,22 @@
 		
 		\subsubsection{Patrons}
 		\begin{frame}{Patrons}
-			IMAGE DE PATRON ICI
+			\begin{figure}
+				\includegraphics[scale=0.2]{exemples_patrons.png}
+			\end{figure}
 		\end{frame}
 		
 		\begin{frame}{Problèmes}
-			PRATIQUE NI POUR LA THEORIE NI A REPRESENTER EN MACHINE A PRIORI
+			PRATIQUE NI POUR LA THEORIE NI A REPRESENTER EN MACHINE A PRIORI\\
+			C'est pourtant ce qu'on cherche à construire.
 		\end{frame}
 				
 		\subsubsection{Graphes}
 		\begin{frame}{Tuckerman Traverse}
-			GRAPHE DES POSITIONS (A/B) -- (B/C) -- (C/A) -- CYCLE
+			\begin{figure}
+				\includegraphics[scale=0.6]{TT_graphe_4.eps}
+				\caption{Tuckerman Traverse du 4-hexaflexagon}
+			\end{figure}
 		\end{frame}		
 		
 		\begin{frame}{Triangulations}
@@ -112,15 +119,15 @@
 			\]
 			\end{definition}
 			
-			ON ETUDIE Tn SOUS Dn
+			On étudie $T_{n}$ sous l'action de $D_{n}$.
 		\end{frame}
 		\begin{frame}{Lemme de Burnside}
-			\begin{theorem}{Lemme de Burnside (dû à Cauchy)}
-				G groupe, X un ensemble fini, alors
+			\begin{theorem}{\underline{Lemme de Burnside} \small{(dû à Cauchy puis Frobenius)}\\}
+				G un groupe, X un ensemble fini, alors
 				\[
 				\mid X/G \mid = \sum_{g\in G}{\mid Fix(g) \mid}
 				\]
-				où $Fix(g) = \{x\in X, g.x = x\}$ est l'ensemble des éléments de X invariants par g.
+				où $\mid X/G \mid$ est le quotient de $X$ sous l'action de $G$ et \\s$Fix(g) = \{x\in X, g.x = x\}$ est l'ensemble des éléments de X invariants par g.
 			\end{theorem}
 		\end{frame}
 		
