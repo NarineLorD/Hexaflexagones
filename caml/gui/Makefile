@@ -2,7 +2,7 @@
 all: lanceur
 
 lanceur:
-	ocamlopt -c -I +labltk lanceur.ml
+	ocamlc -o  lanceur -I +labltk labltk.cma lanceur.ml
 
 %.cmo: %.ml
 	ocamlc -c $<
@@ -10,3 +10,11 @@ lanceur:
 
 %.cmi: %.mli
 	ocamlc -c $<
+
+
+
+clean:
+	rm -f *.cm[iox] *~ .*~ #*#
+	rm -f $(EXEC)
+	rm -f $(EXEC).opt
+	rm -f *.o
