@@ -1,8 +1,9 @@
 #Makefile pour l'interface graphique du programme 
 all: lanceur
 
+
 lanceur:
-	ocamlc -o  lanceur -I +labltk labltk.cma lanceur.ml
+	ocamlc -o  interface -I +labltk labltk.cma interface.ml
 
 %.cmo: %.ml
 	ocamlc -c $<
@@ -12,9 +13,8 @@ lanceur:
 	ocamlc -c $<
 
 
+clean: 
+	rm -f *.cm[iox] *~ .*~ \#*\# *.o
 
-clean:
-	rm -f *.cm[iox] *~ .*~ #*#
-	rm -f $(EXEC)
-	rm -f $(EXEC).opt
-	rm -f *.o
+CLEAN: clean
+	rm -f interface
