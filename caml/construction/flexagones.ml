@@ -17,7 +17,7 @@ let ordre f = f.ordre
 
 let ajoute_face f (a,b) = 
   let n = ordre f in
-  assert (0<= a && 0<= b && a<n && b<n);
+  assert (b=(a+1) mod n  && b<n);
   if a<b then
     {ordre = f.ordre+1; aretes = Abr.add f.aretes (a,b)}
   else
@@ -35,6 +35,8 @@ let symetrie f =
   {ordre=n; aretes=map f.aretes sym}
 
 let equiv f g = 
+(*cette fonction ne fonctionne pas (ne renvoie pas le bon résultat)*)
+(*à corriger: ne pas se laisser berner par des permutations de sommet...*)
   (ordre f = ordre g) && for_all (Abr.est_dans f.aretes)  g.aretes
 
 let check_rotation f k = 
