@@ -19,13 +19,19 @@ let n = Entry.create ~width:10 ~relief:`Sunken top ;;
 
 let ech = Button.create
             ~text: "Echo texte"
-            ~command:(fun () -> Textvariable.set v (Entry.get n))
+            ~command:(fun () -> 
+              let e = Entry.get n in
+              Textvariable.set v ( string_of_int (Module.fonction (int_of_string e))))
             top;;
 (*Fin du 2e bloc*)
 
-(*Troisième bloc:
+
+
+
+
+  (*Troisième bloc:
 affichage (echo) des raccourcis *)
-bind ~events:[`KeyPress]
+  bind ~events:[`KeyPress]
   ~fields:[`KeySymString; `KeyCode]
   ~action:(fun e ->
     print_endline e.ev_KeySymString;

@@ -1,8 +1,9 @@
 #Makefile pour l'interface graphique du programme 
-all: lanceur
+all: interface
 
+remake: CLEAN all
 
-lanceur:
+interface: module.cmi module.cmo
 	ocamlc -o  interface -I +labltk labltk.cma interface.ml
 
 %.cmo: %.ml
