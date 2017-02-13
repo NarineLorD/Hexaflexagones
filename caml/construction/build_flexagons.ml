@@ -25,12 +25,32 @@ L'algorithme utilisé ici est naif et ne tire pas parti des invariances de f pou
 les redondances dans la liste obtenue
  *)
 
+(*version naïve où on calcule toute la liste avant de la réduire*)
+let rec est_dans l x = match l with
+  |[] -> false
+  |y::r -> x=y || est_dans r x;;
 
-(*On va utiliser une table de hachage pour construire rapidement la liste des nouveaux flexagones
+let rec reduit_liste l = match l with
+  |[] -> []
+  |x::r -> if List.exists (fun i -> equiv x i) r then reduit_liste r
+           else x::(reduit_liste r);;
+
+let ordre_sup f = 
+  let n = ordre f in
+  let l = ref [] in
+  for i = 0 to n-1 do
+    l:= (ajoute_face f (i,(i+1) mod n))::!l;
+  done;
+  reduit_liste !l;;
+
+
+
+
+(*On devra  utiliser une table de hachage pour construire rapidement la liste des nouveaux flexagones
 ajouter une face est quasi-instantané, le problème est de savoir si le nouveau est déjà construit
 avec les tables de hachage on fait ça sans problème.
 Je ne me fatigue pas à les implémenter, j'utilise la bibliothèque Ocaml fournie*)
-
+(*PS: il faut que les fonctions de hachage connaissent la définition haut-niveau d'égalité des flexagones (sous Dn)*)
 
 
 

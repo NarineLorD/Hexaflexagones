@@ -1,25 +1,21 @@
 all: build_flexagons
 
-ALL: clean dep all clean
-cmo = flexagones.cmo arbresb.cmo
-cmi = flexagones.cmi arbresb.cmi
-build_flexagons: $(cmi) $(cmo) 
+ALL: clean dep all
+
+build_flexagons: flexagones.cmi flexagones.cmo
 	ocamlc -o final build_flexagons.ml
 
-flexagones: $(cmi) $(cmo)
-	ocamlc flexagones.ml
 
 dep: 
 	ocamldep *.mli *.ml > .depend
-
+include .depend
 clean:
 	rm -f *.cm[iox] *~ .*~ #*#
-	rm -f final
-	rm -f final.opt
 
-include .depend
+CLEAN: clean
+	rm -f final
 
 %.cmi: %.mli
-	ocamlc  $<
+	ocamlc -c $<
 %.cmo: %.ml
-	ocamlc  $<
+	ocamlc -c $<
