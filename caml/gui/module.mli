@@ -1,0 +1,1 @@
+val fonction: int -> int;;
