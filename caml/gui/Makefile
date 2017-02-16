@@ -3,16 +3,19 @@ all: interface
 
 remake: CLEAN all
 
-interface: module.cmi module.cmo
-	ocamlc -o  interface -I +labltk labltk.cma interface.ml
+modules = interface module
+cmo = ${modules: %=%.cmo}
+interface: module.cmo
+	ocamlc -o  interface -I +labltk labltk.cma ${cmo}
 
 %.cmo: %.ml
 	ocamlc -c $<
-
-
 %.cmi: %.mli
 	ocamlc -c $<
 
+dep: 
+	ocamldep *.mli *.ml > .depend
+include .depend
 
 clean: 
 	rm -f *.cm[iox] *~ .*~ \#*\# *.o
