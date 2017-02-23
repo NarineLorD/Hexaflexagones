@@ -4,12 +4,13 @@ all: interface
 remake: CLEAN all
 
 modules = interface module
-cmo = ${modules: %=%.cmo}
+cmo:=${modules:%=%.cmo}
+
 interface: module.cmo
-	ocamlc -o  interface -I +labltk labltk.cma ${cmo}
+	ocamlc -o interface -I +labltk labltk.cma ${cmo}
 
 %.cmo: %.ml
-	ocamlc -c $<
+	ocamlc -c -I +labltk labltk.cma $<
 %.cmi: %.mli
 	ocamlc -c $<
 
