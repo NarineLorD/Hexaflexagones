@@ -80,6 +80,7 @@
 		
 		\subsubsection{Patrons}
 		\begin{frame}{Patrons}
+			L'objet physique
 			\begin{figure}
 				\includegraphics[scale=0.19]{exemples_patrons.png}
 			\end{figure}
@@ -92,6 +93,7 @@
 				
 		\subsubsection{Graphes}
 		\begin{frame}{Tuckerman Traverse}
+			Graphe des positions du flexagone
 			\begin{figure}
 				\includegraphics[scale=0.6]{TT_graphe_4.eps}
 				\caption{Tuckerman Traverse du 4-hexaflexagon}
@@ -99,6 +101,7 @@
 		\end{frame}		
 		
 		\begin{frame}{Triangulations}
+			Graphe d'adjacence des faces (couleurs) du flexagone
 			TRIANGULATIONS ICI C GENIAL		
 		\end{frame}
 		
@@ -121,12 +124,12 @@
 			On étudie $T_{n}$ sous l'action de $D_{n}$.
 		\end{frame}
 		\begin{frame}{Lemme de Burnside}
-			\begin{theorem}{\underline{Lemme de Burnside} \small{(dû à Cauchy puis Frobenius)}\\}
-				G un groupe, X un ensemble fini, alors
+			\begin{theorem}{\underline{Lemme de Burnside}\\}
+				G un groupe fini, X un ensemble fini, alors
 				\[
 				\mid X/G \mid = \sum_{g\in G}{\mid Fix(g) \mid}
 				\]
-				où $\mid X/G \mid$ est le quotient de $X$ sous l'action de $G$ et \\s$Fix(g) = \{x\in X, g.x = x\}$ est l'ensemble des éléments de X invariants par g.
+				où $\mid X/G \mid$ est le quotient de $X$ sous l'action de $G$ et \\$Fix(g) = \{x\in X, g.x = x\}$ est l'ensemble des éléments de X invariants par g.
 			\end{theorem}
 		\end{frame}
 		
@@ -135,13 +138,15 @@
 		\end{frame}
 		
 		\begin{frame}{Finalement}
-		On a compté nos flexagones
-		{\Large
+		On a compté nos flexagones, pour $n>2$:
+		{\large
 		\[
 			\mid F_{n} \mid = \frac{1}{n}C_{n-2} + \frac{1}{2}C_{\frac{n}{2}-1} + \frac{2}{3}C_{\frac{n}{3}-1}
 		\]
 		}
-		\end{frame}		
+		Avec $C_{x} = 0$ si $x \not\in \mathbb{N}$
+		et $\mid F_{n} \mid \sim \dfrac{4^{n-2}}{n(n-1)\sqrt{\pi(n-2)}}$
+	\end{frame}		
 		
 		
 	\section{En machine}
@@ -154,7 +159,8 @@
 			\end{description}
 			
 			\begin{figure}
-				\includegraphics[scale=1]{exemple_6_rot.ps}
+				\includegraphics[scale=0.3]{exemple_6_rot.eps}
+				\includegraphics[scale=0.3]{exemple_6_rot_rot.eps}
 			\end{figure}
 		\end{frame}
 \end{document}
