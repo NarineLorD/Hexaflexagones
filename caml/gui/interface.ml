@@ -1,6 +1,8 @@
 (*Interface graphique écrite avec le module Tcl/Tk*)
-open Tk ;;
+open Tk;;
 open Module;;
+
+
 (*1er bloc:
 Initialisation de la fenêtre*)
 let top = openTk () ;;
