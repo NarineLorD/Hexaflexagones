@@ -1,5 +1,7 @@
 (*Interface graphique écrite avec le module Tcl/Tk*)
-open Tk ;;
+open Tk;;
+open Module;;
+
 
 (*1er bloc:
 Initialisation de la fenêtre*)
@@ -21,7 +23,7 @@ let ech = Button.create
             ~text: "Echo texte"
             ~command:(fun () -> 
               let e = Entry.get n in
-              Textvariable.set v ( string_of_int (Module.fonction (int_of_string e))))
+              Textvariable.set v ( string_of_int (fonction (int_of_string e))))
             top;;
 (*Fin du 2e bloc*)
 
@@ -52,7 +54,7 @@ let b = Button.create
 
 (*5e bloc
 Placement des widgets*)
-pack [coe l; coe ech; coe n; coe b] ;;
+pack [coe l; coe n; coe ech; coe b] ;;
 (*fin du 5e bloc*)
 
 let _ = Printexc.print mainLoop ();;
