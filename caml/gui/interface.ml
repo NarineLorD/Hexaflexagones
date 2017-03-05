@@ -6,6 +6,7 @@ open Module;;
 (*1er bloc:
 Initialisation de la fenêtre*)
 let top = openTk () ;;
+appname_set "Constructeur d'Hexaflexagones";;
 Wm.title_set top "Créateur de ZA WARUDO" ;;
 Wm.geometry_set top "500x500";;
 (*fin du 1er bloc*)
