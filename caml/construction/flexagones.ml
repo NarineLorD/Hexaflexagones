@@ -16,7 +16,6 @@ let f3 () = {ordre=3; aretes=Abr.empty ()}
 let ordre f = f.ordre
 
 let ajoute_face f (x,y) = 
-  let n = ordre f in
   let a,b = min x y, max x y in
   {ordre = f.ordre+1; aretes = Abr.add f.aretes (a,b)}
 
