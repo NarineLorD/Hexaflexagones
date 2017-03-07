@@ -36,9 +36,9 @@
 		\begin{frame}{Un bref historique}
 
 			\begin{list}{Intro}{}
-				\item[$\textit{1939}$.] Découverte  par Arthur Stone
+				\item[$\textit{1939}$.] Découverte  par A. Stone, R. Feynmann, B. Tuckerman et J. Tuckey à Princeton.
 				\item[$\textit{1956}$.]Colonne de Martin Gardner dans \textit{Scientific American}
-				\item[Polulaire mais pas de succèes commercial]
+				\item[Ensuite] Objets populaires 
 			\end{list}
 		\end{frame}
 		
@@ -110,26 +110,29 @@
 			METTRE UN IMAGE POUR JUSTIFIER LES NOMBRES DE CATALAN SUR LES TRIANGULATIONS DE POLYGONES ET PUIS VOILÀ
 		\end{frame}
 		\begin{frame}{Groupe diédral}
-			GROUPE DIÉDRAL POUR LES TRIANGULATIONS
+			Le groupe diédral d'ordre $n\geqslant 3$ est le groupe d'invariance du $n-gone$ régulier.\\
+			\includegraphics[scale=0.22]{snowflake.jpg}
 		\end{frame}
 		
 		\begin{frame}{Action de groupe}
 			\begin{definition}
 			Pour un ensemble X, un groupe G défini naturellement la relation d'équivalence sur X par
 			\[
-				\forall x,y \in x, x \equiv y \Leftrightarrow \exists g \in G, x=g.y
+				\forall x,y \in X, x \equiv y \Leftrightarrow \exists g \in G, x=g.y
 			\]
+			On note $X/G$ l'ensemble quotient.
 			\end{definition}
 			
 			On étudie $T_{n}$ sous l'action de $D_{n}$.
 		\end{frame}
+		
 		\begin{frame}{Lemme de Burnside}
 			\begin{theorem}{\underline{Lemme de Burnside}\\}
 				G un groupe fini, X un ensemble fini, alors
 				\[
 				\mid X/G \mid = \sum_{g\in G}{\mid Fix(g) \mid}
 				\]
-				où $\mid X/G \mid$ est le quotient de $X$ sous l'action de $G$ et \\$Fix(g) = \{x\in X, g.x = x\}$ est l'ensemble des éléments de X invariants par g.
+				Où $Fix(g) = \{x\in X, g.x = x\}$ est l'ensemble des éléments de X invariants par g.
 			\end{theorem}
 		\end{frame}
 		
@@ -151,16 +154,33 @@
 		
 	\section{En machine}
 		\subsection{Représentation}
-			
+		
+		\begin{frame}{Objectifs}
+			\begin{itemize}
+					\item Représenter et construire les TdP.
+					\item Transformer ces représentations en patrons de flexagone (prêts pour l'impression).
+			\end{itemize}		
+		\end{frame}
+		
 		\begin{frame}{Polygones}
 			\begin{description}
-			\item[*]Un entier: l'ordre du polygone
-			\item[*]Une liste de couples: les arêtes internes
+			\item[$\odot$]Un entier: l'ordre du polygone
+			\item[$\odot$]Une liste de couples: les arêtes internes
 			\end{description}
 			
 			\begin{figure}
-				\includegraphics[scale=0.3]{exemple_6_rot.eps}
-				\includegraphics[scale=0.3]{exemple_6_rot_rot.eps}
+				\includegraphics[scale=0.3]{exemple_6_rot.eps}\bigskip 
+				\includegraphics[scale=0.3]{exemple_triangu_9.eps}
 			\end{figure}
+		\end{frame}
+		
+		\begin{frame}{Construction des triangulations}
+			Les trois premières triangulations sont uniques:
+			\begin{figure}
+				\includegraphics[scale=0.2]{triangu_3.eps}
+				\includegraphics[scale=0.2]{triangu_4.eps}
+				\includegraphics[scale=0.2]{triangu_5.eps}
+			\end{figure}
+			Étant donné une triangulation $T$ du $n-gone$, ajouter un triangle sur un côté $0 \eqslantless i < n$ de $T_{n}$ pour obtenir la triangulation $T^{(i)}$ du $(n+1)-gone$.
 		\end{frame}
 \end{document}
