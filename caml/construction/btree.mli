@@ -17,3 +17,5 @@ module Abr:sig
   val max: 'a abr -> 'a
   val add: 'a abr -> 'a -> 'a abr
 end
+
+val change_couleur:('a*'a) btree -> 'a -> 'a -> ('a*'a) btree

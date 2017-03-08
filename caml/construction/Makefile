@@ -2,7 +2,7 @@ all: build_flexagons
 
 remake: CLEAN dep all
 
-modules:=arbresb flexagones build_flexagons
+modules:=btree flexagones build_flexagons
 
 cmo:=${modules:%=%.cmo}
 

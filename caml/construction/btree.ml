@@ -2,6 +2,7 @@ type 'a btree =
   |Vide
   |Node of 'a btree*'a*'a btree;;
 
+(*Tout d'abord des fonctions générales sur les arbres binaire*)
 let est_vide ab = ab=Vide;;
 
 let rec taille ab = match ab with
@@ -45,7 +46,7 @@ let rec for_all f ab = match ab with
   |Vide -> true
   |Node(g,x,d) -> f x && for_all f g && for_all f d;;
 
-
+(*Le module des arbres binaires de recherche*)
 module Abr = struct
   type 'a abr = 'a btree
   let empty () = Vide
@@ -66,5 +67,16 @@ module Abr = struct
                 else Node(g,y,add d x)
 end
 
+
+
+(*Quelques fonctions sur les arbres dont les noeuds sont des couples:
+utilisés pour manipuler les flexagones*)
+let rec change_couleur a x y = match a with
+  |Vide -> Vide
+  |Node(g,(e,f),d) -> let g',d' = change_couleur g x y, change_couleur d x y in
+                      if e=x && f=x then Node(g',(y,y),d')
+                      else if e=x then Node(g',(y,f),d')
+                      else if f=x then Node(g',(e,y),d')
+                      else Node(g',(e,f),d');;
 
 
