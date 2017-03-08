@@ -6,7 +6,6 @@ C'est ce que j'essaye d'implémenter ici
  *)
 open Btree
 
-
 type flexagone = {ordre:int;
                   aretes:(int*int) Abr.abr}
 
@@ -22,12 +21,18 @@ let ajoute_face_naif f (x,y) =
 (*en pratique il faut renommer O(n) sommets pour faire des choses correctes par la suite*)
 
 
+
+
 let change_couleur_flexagone f x y = 
 (* pour un flexagone f, deux entiers x  et y, si x est le nom d'une face de f (un sommet de la tiangulation),
 alors cette fonction doit renvoyer le flexagone g où x a été renommé en y.
 On pourrait appeler cette fonction change_couleur: change la couleur d'une face.
 Remarque: je ne me soucie pas de savoir si la couleur y est déjà utilisée dans f, faire attention à l'usage !*)
-  {ordre = ordre f; aretes = change_couleur (f.aretes) x y}
+  let g (e,f) = if e=x && f=x then (y,y)
+                else if e=x then (min f y,max y f)
+                else if f=x then (min y e,max e y)
+                else (e,f) in
+  {ordre = ordre f; aretes = Abr.map f.aretes g}
 
 
 let ajoute_face f (x,y) =
@@ -44,12 +49,12 @@ let ajoute_face f (x,y) =
 let rotation f k = 
   let n = ordre f in
   let plus (x,y) = let a,b = (x+k) mod n, (y+k) mod n in (min a b, max a b) in
-  {ordre = n; aretes = map f.aretes plus}
+  {ordre = n; aretes = Abr.map f.aretes plus}
 
 let symetrie f = 
   let n = ordre f in
   let sym (x,y) = (n-1-y, n-1-x) in
-  {ordre=n; aretes=map f.aretes sym}
+  {ordre=n; aretes= Abr.map f.aretes sym}
 
 
 
@@ -77,13 +82,13 @@ let check_rotation f k =
 
 let check_symetrie f k = 
   let n = ordre f in
-  for_all (Abr.est_dans f.aretes) (map f.aretes (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b)));;
+  for_all (Abr.est_dans f.aretes) (Abr.map f.aretes (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b)))
   
   
-  
-let f4 () = ajoute_face (f3()) (0,1);;
+let f4 () = ajoute_face (f3()) (0,1) 
 
 let a = ref (f4());;
+a:= ajoute_face !a (2,3);;
 let b = ref (f4());;
 a := ajoute_face !a (0,1);;
 b := ajoute_face !b (1,2);;
