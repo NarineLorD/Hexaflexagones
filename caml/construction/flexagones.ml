@@ -77,7 +77,7 @@ let check_rotation f k =
 
 let check_symetrie f k = 
   let n = ordre f in
-  for_all (Abr.est_dans f.aretes) (map f.aretes (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b));;
+  for_all (Abr.est_dans f.aretes) (map f.aretes (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b)));;
   
   
   
