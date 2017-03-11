@@ -71,7 +71,7 @@ module Abr = struct
                     add t x
   let rec map abr f = match abr with
     |Vide -> Vide
-    |Node(g,x,d) -> add (merge (map f g) (map f d)) x
+    |Node(g,x,d) -> add (merge (map g f) (map d f)) (f x)
 end
 
 
