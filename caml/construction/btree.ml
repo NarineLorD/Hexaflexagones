@@ -65,18 +65,18 @@ module Abr = struct
     |Vide -> Node(Vide,x,Vide)
     |Node(g,y,d) -> if x<y then Node(add g x,y,d) 
                 else Node(g,y,add d x)
+  let rec merge a b = match a with
+    |Vide -> b
+    |Node(g,x,d) -> let t = merge (merge b d) g in
+                    add t x
+  let rec map abr f = match abr with
+    |Vide -> Vide
+    |Node(g,x,d) -> add (merge (map g f) (map d f)) (f x)
 end
 
 
 
 (*Quelques fonctions sur les arbres dont les noeuds sont des couples:
 utilisés pour manipuler les flexagones*)
-let rec change_couleur a x y = match a with
-  |Vide -> Vide
-  |Node(g,(e,f),d) -> let g',d' = change_couleur g x y, change_couleur d x y in
-                      if e=x && f=x then Node(g',(y,y),d')
-                      else if e=x then Node(g',(y,f),d')
-                      else if f=x then Node(g',(e,y),d')
-                      else Node(g',(e,f),d');;
 
 

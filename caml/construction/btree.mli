@@ -16,6 +16,5 @@ module Abr:sig
   val min: 'a abr -> 'a
   val max: 'a abr -> 'a
   val add: 'a abr -> 'a -> 'a abr
+  val map: 'a abr -> ('a -> 'b) -> 'b abr
 end
-
-val change_couleur:('a*'a) btree -> 'a -> 'a -> ('a*'a) btree
