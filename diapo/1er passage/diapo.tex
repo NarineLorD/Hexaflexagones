@@ -38,7 +38,10 @@
 			\begin{list}{Intro}{}
 				\item[$\textit{1939}$.] Découverte  par A. Stone, R. Feynmann, B. Tuckerman et J. Tuckey à Princeton.
 				\item[$\textit{1956}$.]Colonne de Martin Gardner dans \textit{Scientific American}
-				\item[Ensuite] Objets populaires 
+				\item[Ensuite] Objets populaires, quelques livres écrits sur le sujet:
+					\begin{enumerate}
+						\item[] Martin Gardner, Harold V. McIntosh, Antony S. Conrad, Les Pook
+					\end{enumerate}
 			\end{list}
 		\end{frame}
 		
@@ -54,10 +57,34 @@
 		
 		\begin{frame}{(Démonstration)}
 		\begin{center}
-		\Large{$\longrightarrow$}\\
-			\includegraphics[scale=0.3]{/video/inerte_rouge.png}$\leftarrow\qquad$
-			\includegraphics[scale=0.3]{/video/flexe_rouge_bleu_deb.png} \Large{$\downarrow$}\\
-			\includegraphics[scale=0.3]{/video/flexe_rouge_bleu_fin.png}
+			\includegraphics[scale=0.27]{/video/inerte_rouge.png}
+			\Large{$\longrightarrow$}
+			\includegraphics[scale=0.27]{/video/flexe_rouge_bleu_deb.png} \Large{$\downarrow$}\\
+			\includegraphics[scale=0.32]{/video/inerte_bleu.png}
+			\Large{$\longleftarrow$}
+			\includegraphics[scale=0.27]{/video/flexe_rouge_bleu_fin.png}\\
+			\LARGE{FLEXE}
+			
+		\end{center}
+		\end{frame}
+		
+		\begin{frame}
+		\begin{center}
+			\includegraphics[scale=0.3]{/video/inerte_bleu.png}
+			\Large{$\longrightarrow$}
+			\includegraphics[scale=0.35]{/video/flexe_bleu_rose_deb.png} \Large{$\downarrow$}\\
+			\includegraphics[scale=0.3]{/video/inerte_rose.png}
+			\Large{$\longleftarrow$}
+			\includegraphics[scale=0.45]{/video/flexe_bleu_rose_fin.png}\\
+			\LARGE{FLEXE}
+		\end{center}
+		\end{frame}
+		
+		\begin{frame}{(Démonstration)}
+		\begin{center}
+			\includegraphics[scale=0.3]{/video/inerte_rose.png}\Large{$\longrightarrow$}
+			\includegraphics[scale=0.3]{/video/blocage_rose.png}\\
+			\LARGE{BLOCAGE}
 		\end{center}
 		\end{frame}
 		
@@ -66,18 +93,11 @@
 			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
 		\end{frame}
 		
-		\begin{frame}{(Démonstration)}
-			METTRE 3 4 PHOTOS DE FLEXAGONES POUR MONTRER CE QU'IL SE PASSE\\
-			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
-		\end{frame}
-		
-		\begin{frame}{(Démonstration)}
-			METTRE 3 4 PHOTOS DE FLEXAGONES POUR MONTRER CE QU'IL SE PASSE\\
-			IL FAUDRA BIEN SÛR PLUSIEURS FRAME !!!!!!
-		\end{frame}
-		
 		\begin{frame}{Ajout de faces}
-		IL FAUT MONTRER QU'ON PEUT AJOUTER DES FACES ET QUE C'EST COOL !!
+		
+		\begin{center}
+		\includegraphics[scale=0.3]{outils_ajout_face.png}
+		\end{center}
 		\end{frame}
 		
 		\subsection{Objectifs}
@@ -99,21 +119,25 @@
 		\end{frame}
 		
 		\begin{frame}{Problèmes}
-			PRATIQUE NI POUR LA THEORIE NI A REPRESENTER EN MACHINE A PRIORI\\
-			C'est pourtant ce qu'on cherche à construire.
+			Pratique ni pour la théorie ni à représenter en machine à priori.\\
+			C'est pourtant ce qu'on cherche à construire.\\
+			$\longrightarrow$ Représentations plus abstraites?
 		\end{frame}
 				
 		\subsubsection{Graphes}
 		\begin{frame}{Tuckerman Traverse}
 			Graphe des positions du flexagone
 			\includegraphics[scale=0.6]{TT_graphe_4.eps}\\
-			Chaque sommet est un couple $(couleur devant, couleur derrière)$,\\
-			Deux sommets sont liés $\Leftrightarrow$ On peut passer de l'un à l'autre en un flexe.
+			Chaque sommet est un couple (couleurdevant, couleurderrière),\\
+			Deux sommets sont liés $\Leftrightarrow$ On peut passer de l'un à l'autre en un flexe.\\
+			Souvent appelé TT pour "Tuckerman Traverse" en l'hommage de Bryant Tuckerman.
 		\end{frame}		
 		
 		\begin{frame}{Triangulations}
-			Graphe d'adjacence des faces (couleurs) du flexagone
-			TRIANGULATIONS ICI C GENIAL		
+			Graphe d'adjacence des faces (couleurs) du flexagone:
+			\includegraphics[scale=0.3]{triangu_4.eps}\\
+			Chaque sommet est une couleur.\\
+			Deux sommets sont liés $\Leftrightarrow$ Les deux couleurs sont visibles simultanément.
 		\end{frame}
 		
 		\subsection{Dénombrement}
