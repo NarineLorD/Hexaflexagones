@@ -104,12 +104,12 @@
 		\begin{frame}{Objectifs}
 			Programmer un logiciel donnant les patrons d'hexaflexagones
 		\end{frame}
-		
-		
+
+
 	\section{Préliminaire}
-	
+
 		\subsection{Représentations}
-		
+
 		\subsubsection{Patrons}
 		\begin{frame}{Patrons}
 			L'objet physique
@@ -117,7 +117,7 @@
 				\includegraphics[scale=0.19]{exemples_patrons.png}
 			\end{figure}
 		\end{frame}
-		
+
 		\begin{frame}{Problèmes}
 			Pratique ni pour la théorie ni à représenter en machine à priori.\\
 			C'est pourtant ce qu'on cherche à construire.\\
@@ -137,7 +137,8 @@
 			Graphe d'adjacence des faces (couleurs) du flexagone:
 			\includegraphics[scale=0.3]{triangu_4.eps}\\
 			Chaque sommet est une couleur.\\
-			Deux sommets sont liés $\Leftrightarrow$ Les deux couleurs sont visibles simultanément.
+			Deux sommets sont liés $\Leftrightarrow$ Les deux couleurs sont visibles simultanément.\\
+			Représentation des flexagones par des triangulation de polygones (TdP).
 		\end{frame}
 		
 		\subsection{Dénombrement}
@@ -167,14 +168,23 @@
 			\begin{theorem}[Lemme de Burnside]
 				G un groupe fini, X un ensemble fini, alors
 				\[
-				|X/G| = \frac{1}{|G|}\sum_{g\in G}{|Fix_{g}(X)|}
+				|X/G| = \frac{1}{|G|}\sum_{g\in G}{|Fix(g)|}
 				\]
-				Où $Fix_{g}(X) = \{x\in X, g(x) = x\}$.
+				Où $Fix(g) = \{x\in X, g(x) = x\}$.
 			\end{theorem}
 		\end{frame}
 		
 		\begin{frame}{Application au dénombrement}
-			MONTRER ASSEZ VITE COMMENT LES ROTATIONS FONCTIONNENT (CENTRE DU POLYGONE) ET PASSER SUR LES SYMÉTRIES (SANS DOUTE TROP LONG)
+			Avec $G=D_{n}=\langle\tau,\rho\mid \tau^{2}=\rho^{n}=(\tau\rho)^{2}=1\rangle$
+			\[
+				|X/D_{n}| = \frac{1}{2n}\sum_{k=0}^{n}|Fix(\rho^{k})|+|Fix(\rho^{k}\tau\rho^{-k})|
+			\]
+		\end{frame}
+		\begin{frame}{Cas des rotations}
+		\begin{figure}[1]
+		\includegraphics[scale=0.45]{invariances_rotation.eps}
+			\caption{Seules les rotations d'angle $\pi$ ou $2\pi/3$ peuvent laisser invariante une triangulation}
+			\end{figure}
 		\end{frame}
 		
 		\begin{frame}{Finalement}
@@ -196,7 +206,7 @@
 
 
 
-	\section{En machine}
+	\section{Construction}
 		\subsection{Représentation}
 		
 		\begin{frame}{Objectifs}
@@ -205,20 +215,7 @@
 					\item Transformer ces représentations en patrons de flexagone (prêts pour l'impression).
 			\end{itemize}		
 		\end{frame}
-		
-		\begin{frame}{Polygones}
-		\underline{Description de graphes}:\\
-			\begin{description}
-			\item[$\odot$]Un entier: l'ordre du polygone/flexagone
-			\item[$\odot$]Une liste de couples: les arêtes internes
-			\end{description}
-			
-			\begin{figure}
-				\includegraphics[scale=0.3]{exemple_6_rot.eps}\bigskip 
-				\includegraphics[scale=0.3]{exemple_triangu_9.eps}
-			\end{figure}
-		\end{frame}
-		
+
 		\begin{frame}{Construction des triangulations}
 			Les trois premières triangulations sont uniques:
 			\begin{figure}
@@ -227,19 +224,78 @@
 				\includegraphics[scale=0.2]{triangu_5.eps}
 			\end{figure}
 		\end{frame}
-		\begin{frame}			
+		\begin{frame}{Construction des triangulations}
 			Ajout de face: concaténation d'un triangle sur un côté du polygone
 			\begin{figure}
 				\includegraphics[scale=0.3]{exemple_triangu_ajoute_face_debut.eps}
 				\includegraphics[scale=0.3]{exemple_triangu_ajoute_face_fin.eps}
 			\end{figure}
 		$\rightarrow$ Construction par récurrence des triangulations.\\
-		\underline{Problème}: Éviter les doublons \small{$\rightarrow$} résoudre l'isomorphisme de graphes?
 		\end{frame}
 		
-		\begin{frame}{Solution}
-			Renuméroter les sommets à chaque ajout de face permet de différentier les triangulations en temps $O(n^{2})$.\\
-			Contrepartie: chaque ajoute de face demande $O(n)$ opérations, où n est l'ordre du flexagone sur lequel on ajoute une face.
-		\end{frame}		
+		\subsection{Création des patrons}
 		
+		\begin{frame}{Déformation}
+			\begin{center}
+				\includegraphics[scale=0.08]{equiv_tuckey_feynmann.eps}
+			\end{center}
+			\begin{flushleft}
+				Diagramme de Tuckey
+			\end{flushleft}
+			\begin{flushright}
+				Diagramme de Feynmann
+			\end{flushright}
+		\end{frame}
+		
+		\begin{frame}{Interprétation des diagrammes}
+			\includegraphics[scale=0.08]{conversion_tuckey_patron_1.eps}
+		\end{frame}
+
+		\begin{frame}{Interprétation des diagrammes}
+			\includegraphics[scale=0.1]{conversion_tuckey_patron_2.eps}
+		\end{frame}
+
+		\begin{frame}{Interprétation des diagrammes}
+			\includegraphics[scale=0.1]{conversion_tuckey_patron_3.eps}
+		\end{frame}
+		
+		\begin{frame}{Interprétation des diagrammes}
+			\includegraphics[scale=0.1]{conversion_tuckey_patron_4.eps}
+		\end{frame}
+		
+		\begin{frame}{Interprétation des diagrammes}
+			\includegraphics[scale=0.1]{conversion_tuckey_patron_5.eps}
+		\end{frame}
+		
+		\begin{frame}{Interprétation des diagrammes}
+			\includegraphics[scale=0.1]{conversion_tuckey_patron_6.eps}\\
+			Ces triplets permettent de construire le patron de manière très efficace.
+		\end{frame}
+		
+		\subsection{Implémentations}
+		\begin{frame}{Construction en machine}
+			Plusieurs idées plus ou moins abouties:\\
+			\begin{enumerate}
+			\item[•] Construire les triangulations puis les convertir
+			\end{enumerate}
+		\end{frame}
+
+		\begin{frame}{Triangulations de polygones}
+		\underline{Description de graphes}:\\
+			\begin{description}
+			\item[$\odot$]Un entier: l'ordre du polygone/flexagone
+			\item[$\odot$]Une liste de couples: les arêtes internes
+			\end{description}
+			\begin{figure}
+				\includegraphics[scale=0.3]{exemple_6_rot.eps}\bigskip 
+				\includegraphics[scale=0.3]{exemple_triangu_9.eps}
+			\end{figure}
+		\end{frame}
+
+		\begin{frame}{Solution}
+			\underline{Problème}: Éviter les doublons \small{$\rightarrow$} résoudre l'isomorphisme de graphes?\\
+
+			\underline{Solution}:Renuméroter les sommets à chaque ajout de face pour différencier les triangulations en temps $O(n^{2})$.\\
+			Contrepartie: chaque ajoute de face demande $O(n)$ opérations, où n est l'ordre du flexagone sur lequel on ajoute une face.
+		\end{frame}
 \end{document}
