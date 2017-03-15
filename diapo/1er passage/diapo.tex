@@ -102,7 +102,7 @@
 		
 		\subsection{Objectifs}
 		\begin{frame}{Objectifs}
-			Programmer un logiciel donnant les patrons d'hexaflexagones
+			Comment programmer un logiciel créant les patrons d'hexaflexagones?
 		\end{frame}
 
 
@@ -143,7 +143,7 @@
 		
 		\subsection{Dénombrement}
 		\begin{frame}{Nombres de Catalan}
-			\includegraphics[scale=0.15]{nombres_catalan.eps}
+			\includegraphics[scale=0.15]{nombres_catalans.eps}
 		\end{frame}
 		\begin{frame}{Groupe diédral}
 			Le groupe diédral d'ordre $n\geqslant 3$ est le groupe d'invariance du $n-gone$ régulier.\\
@@ -187,6 +187,15 @@
 			\end{figure}
 		\end{frame}
 		
+		\begin{frame}{Cas des rotations}
+			On note $C_{n}=\frac{1}{n+1}\binom{2n}{n}$ si $n\in\mathbb{N}$, $0$ sinon. 
+ le $n^{e}$ nombre de Catalan.\\
+			On cherche les éléments fixés par $\rho^{n/2}$ et $\rho^{n/3}$.\\
+			Pour $\rho^{n/2}$: $\frac{n}{2}$ axes de symétrie et $C_{n/2-1}$ triangulations pour chacun.\\
+			$\longrightarrow |Fix(\rho^{n/2})|=\frac{n}{2}C_{n/2-1}$\\
+			De même, $|Fix(\rho^{n/3})|=\frac{n}{3}C_{n/3-1}$
+		\end{frame}
+	
 		\begin{frame}{Finalement}
 		On a compté nos flexagones, pour $n>2$:
 		{\large
@@ -202,8 +211,6 @@
 		$|F_{n}| \sim \dfrac{4^{n-2}}{n^{2}\sqrt{n\pi}}$
 		\end{flushleft}
 	\end{frame}
-		
-
 
 
 	\section{Construction}
@@ -277,6 +284,8 @@
 			Plusieurs idées plus ou moins abouties:\\
 			\begin{enumerate}
 			\item[•] Construire les triangulations puis les convertir
+			\item[•] Construire directement les patrons (avec les listes de triplets)
+			\item[•] Trouver d'autres représentations plus maniables.
 			\end{enumerate}
 		\end{frame}
 
@@ -292,10 +301,18 @@
 			\end{figure}
 		\end{frame}
 
-		\begin{frame}{Solution}
+		\begin{frame}{Construction}
 			\underline{Problème}: Éviter les doublons \small{$\rightarrow$} résoudre l'isomorphisme de graphes?\\
 
 			\underline{Solution}:Renuméroter les sommets à chaque ajout de face pour différencier les triangulations en temps $O(n^{2})$.\\
 			Contrepartie: chaque ajoute de face demande $O(n)$ opérations, où n est l'ordre du flexagone sur lequel on ajoute une face.
+		\end{frame}
+		
+		\begin{frame}{Modification des objectifs}
+			Nombre de flexagones d'ordre $N \sim 4^{N}$\\
+			$\rightarrow$ Tous les construire limite leur taille.\\
+			Se limier à certaines classes de flexagones?\\
+			Problèmes d'impression pour certains patrons...
+			
 		\end{frame}
 \end{document}
