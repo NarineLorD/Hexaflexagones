@@ -2,7 +2,7 @@
 Ce script doit permettre de construire les représentations de flexagones par les
 triangulations de polygones
  *)
-open Flexagones
+open Triangulations
 
 (*classe f renvoie une liste contenant la classe d'équivalence du flexagone f sous l'action du groupe diédral
 ie tous les flexagones obtenus par rotations & reflexions de f*)

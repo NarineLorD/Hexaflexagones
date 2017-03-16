@@ -1,30 +1,28 @@
 (*
-Idée d'alban pour représenter les triangulations de flexagones:
----L'ordre N (int: 2<N<infnty)
----Les arrêtes internes du flexagones (int*int) list
-C'est ce que j'essaye d'implémenter ici
+
+Implémentation de triangulations des polygones réguliers
+
  *)
-open Btree
+open Boites
 
-type flexagone = {ordre:int;
-                  aretes:(int*int) Abr.abr}
-
-
-let f3 () = {ordre=3; aretes=Abr.empty ()}
+type triangulation = (int*int) boite
 
 
-let ordre f = f.ordre
+let f3 () = empty ()
+
+
+let ordre f = taille f + 3
 
 let ajoute_face_naif f (x,y) = 
   let a,b = min x y, max x y in
-  {ordre = f.ordre+1; aretes = Abr.add f.aretes (a,b)}
+  add f (a,b)
 (*en pratique il faut renommer O(n) sommets pour faire des choses correctes par la suite*)
 
 
 
 
-let change_couleur_flexagone f x y = 
-(* pour un flexagone f, deux entiers x  et y, si x est le nom d'une face de f (un sommet de la tiangulation),
+let renomme_sommet f x y = 
+(* pour une triangulation f, deux entiers x  et y, si x est le nom d'une face de f (un sommet de la tiangulation),
 alors cette fonction doit renvoyer le flexagone g où x a été renommé en y.
 On pourrait appeler cette fonction change_couleur: change la couleur d'une face.
 Remarque: je ne me soucie pas de savoir si la couleur y est déjà utilisée dans f, faire attention à l'usage !*)
@@ -32,7 +30,7 @@ Remarque: je ne me soucie pas de savoir si la couleur y est déjà utilisée dan
                 else if e=x then (min f y,max y f)
                 else if f=x then (min y e,max e y)
                 else (e,f) in
-  {ordre = ordre f; aretes = Abr.map f.aretes g}
+  map f g
 
 
 let ajoute_face f (x,y) =
@@ -40,26 +38,26 @@ let ajoute_face f (x,y) =
   assert (y mod n = (x+1) mod n && y<n);
   let g = ref f in
   for i = n-1 downto y do
-    g := change_couleur_flexagone !g i (i+1)
+    g := renomme_sommet !g i (i+1)
   done;
-  {ordre = n+1; aretes = Abr.add (!g.aretes) (x,y+1)}
+  add !g (x,y+1)
 
   
   
 let rotation f k = 
   let n = ordre f in
   let plus (x,y) = let a,b = (x+k) mod n, (y+k) mod n in (min a b, max a b) in
-  {ordre = n; aretes = Abr.map f.aretes plus}
+  map f plus
 
 let symetrie f = 
   let n = ordre f in
   let sym (x,y) = (n-1-y, n-1-x) in
-  {ordre=n; aretes= Abr.map f.aretes sym}
+  map f sym
 
 
 
 let egal f g = 
-  (ordre f = ordre g) && for_all (Abr.est_dans f.aretes)  g.aretes
+  (ordre f = ordre g) && for_all (est_dans f)  g
 
 let equiv f g = 
   let n = ordre f in
@@ -82,14 +80,25 @@ let check_rotation f k =
 
 let check_symetrie f k = 
   let n = ordre f in
-  for_all (Abr.est_dans f.aretes) (Abr.map f.aretes (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b)))
-  
-  
-let f4 () = ajoute_face (f3()) (0,1) 
+  for_all (est_dans f) (map f (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b)))
 
-let a = ref (f4());;
-a:= ajoute_face !a (2,3);;
-let b = ref (f4());;
-a := ajoute_face !a (0,1);;
-b := ajoute_face !b (1,2);;
-equiv !a !b;;
+
+
+
+
+
+(*les quelques fonctions suivantes servent à construire l'intégralité des triangulations existantes pour un ordre donné*)
+
+let rec catalan n = 
+  if n=0 then 1
+  else let c = catalan (n-1) in
+       2*(2*n-1)*c/(n+1)
+
+let nombre_triangulation n = 
+  assert(n>=3);
+  catalan (n-2)
+
+
+(*
+La suite du module sert à compter le nombre d'arêtes en commun pour deux triangulations quelconques de même ordre*)
+

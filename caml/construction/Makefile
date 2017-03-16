@@ -2,7 +2,7 @@ all: build_flexagons
 
 remake: CLEAN dep all
 
-modules:=btree flexagones build_flexagons
+modules:=btree boites triangulations  build_flexagons
 
 cmo:=${modules:%=%.cmo}
 
