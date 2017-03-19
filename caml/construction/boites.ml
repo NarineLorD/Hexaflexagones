@@ -32,13 +32,16 @@ let for_all f boite =
 
 
 let rec intersection a b = 
-(*Pour deux boites a et b, renvoie une boite contenant les éléments qui sont dans a et dans b*)
-  match a.content,b.content with
-  |[],_ -> {taille=0;content=[]}
-  |_,[] -> {taille=0;content=[]}
-  |x::r, y::q -> let n,m = taille a, taille b in 
-                 let g = intersection {taille = n-1;content=r} {taille = m-1;content=q} in
-                 let t = taille g in
-                 if x=y then {taille=t+1; content=x::g.content}
-                 else {taille=t; content=g.content}
-                        
+(*Pour deux boites a et b, renvoie une boite contenant les éléments qui sont dans a et dans b, avec la multiplicité des éléments de a*)
+  match a.content with
+  |[] -> {taille=0;content=[]}
+  |x::r -> let n = a.taille in
+           let t = intersection {taille=n-1;content=r} b in
+           if est_dans b x then add t x 
+           else t
+
+
+
+
+
+
