@@ -23,14 +23,13 @@ let ajoute_face_naif f (x,y) =
 
 let renomme_sommet f x y = 
 (* pour une triangulation f, deux entiers x  et y, si x est le nom d'une face de f (un sommet de la tiangulation),
-alors cette fonction doit renvoyer le flexagone g où x a été renommé en y.
-On pourrait appeler cette fonction change_couleur: change la couleur d'une face.
-Remarque: je ne me soucie pas de savoir si la couleur y est déjà utilisée dans f, faire attention à l'usage !*)
+alors cette fonction doit renvoyer la triangulation g où x a été renommé en y.
+Remarque: je ne me soucie pas de savoir si la couleur y est déjà utilisée dans f, faire attention à l'usage, une telle utilisation renvoyerais un graphe non isomorphe au premier!*)
   let g (e,f) = if e=x && f=x then (y,y)
                 else if e=x then (min f y,max y f)
                 else if f=x then (min y e,max e y)
                 else (e,f) in
-  map f g
+  map g f
 
 
 let ajoute_face f (x,y) =
@@ -47,12 +46,12 @@ let ajoute_face f (x,y) =
 let rotation f k = 
   let n = ordre f in
   let plus (x,y) = let a,b = (x+k) mod n, (y+k) mod n in (min a b, max a b) in
-  map f plus
+  map plus f
 
 let symetrie f = 
   let n = ordre f in
   let sym (x,y) = (n-1-y, n-1-x) in
-  map f sym
+  map sym f
 
 
 
@@ -80,7 +79,7 @@ let check_rotation f k =
 
 let check_symetrie f k = 
   let n = ordre f in
-  for_all (est_dans f) (map f (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b)))
+  for_all (est_dans f) (map (fun (x,y) -> let a ,b = ((n-y-k-k) mod n,(n-x-k-k) mod n) in (min a b, max a b)) f)
 
 
 

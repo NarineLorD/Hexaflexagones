@@ -1,47 +1,52 @@
 (*
 Implémentatio d'un structure de recherche utilisée pour manipuler les triangulations de polygones
+Ces boites sont en réalité des ensembles triés sur lesquels on peut faire les opérations d'intersection et d'union classique
  *)
 
 
+type 'a ens = 'a list
+
 type 'a boite = {taille:int;
-                 content: 'a list;}
+                 content: 'a ens;}
 
 
+let (vide: unit -> 'a ens) = fun () -> []
+let empty ()= {taille=0; content=vide()}
 
-let add boite x = {taille = boite.taille+1; content = x::(boite.content)}
+let taille b = b.taille
 
-let taille boite = boite.taille
+let is_empty e = e=[]
+let est_vide b = taille b = 0
 
-let est_dans boite x = 
-  let rec est_dans_liste l e = match l with
-    |[] -> false
-    |y::r -> e=y || est_dans_liste r e
-  in
-  est_dans_liste boite.content x
+let rec ajoute e x = match e with
+  |[] -> [x]
+  |y::r -> if x<y then x::e
+           else y::(ajoute r x)
+let add b x = {taille = b.taille+1; content = ajoute b.content x}
 
-let empty () = {taille=0; content = []}
+let rec is_in e x = match e with
+  |[] -> false
+  |y::r -> y=x || (y<x && is_in r x) 
+let est_dans b x = is_in b.content x
 
-let est_vide boite = boite.taille = 0
+let map_ens f e = List.map f e
+let map f b = {taille=taille b; content = map_ens f b.content}
 
-let map boite f = 
-  {taille=boite.taille;content=List.map f boite. content}
-    
-let for_all f boite = 
-  List.for_all f boite.content 
-
-
-
-let rec intersection a b = 
-(*Pour deux boites a et b, renvoie une boite contenant les éléments qui sont dans a et dans b, avec la multiplicité des éléments de a*)
-  match a.content with
-  |[] -> {taille=0;content=[]}
-  |x::r -> let n = a.taille in
-           let t = intersection {taille=n-1;content=r} b in
-           if est_dans b x then add t x 
-           else t
+let for_all_ens f e = List.for_all f e
+let for_all f b = for_all_ens f b.content
 
 
+let rec intersection a b = match a.content,b.content with
+  |[],_ -> {taille=0;content=[]}
+  |_,[] -> {taille=0;content=[]}
+  |x::r,y::l -> if x=y then add (intersection {taille= a.taille -1;content=r} {taille=b.taille-1;content=l}) x 
+                else if x<y then intersection {taille=a.taille-1;content=r} b
+                else intersection a {taille=b.taille-1;content=l}
 
 
-
-
+let rec union a b = match a.content,b.content with
+  |[],_ -> b
+  |_,[] -> a
+  |x::r,y::l -> if x=y then add (union {taille=a.taille-1;content=r} {taille=b.taille-1;content=l}) x
+                else if x<y then add (union {taille=a.taille-1;content=r} b) x
+                else add (union a {taille=b.taille-1;content=l}) y
