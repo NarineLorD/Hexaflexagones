@@ -34,13 +34,15 @@ Remarque: je ne me soucie pas de savoir si la couleur y est déjà utilisée dan
 
 let ajoute_face f (x,y) =
   let n = ordre f in
-  assert (y mod n = (x+1) mod n && y<n);
-  let g = ref f in
-  for i = n-1 downto y do
-    g := renomme_sommet !g i (i+1)
-  done;
-  add !g (x,y+1)
-
+  if (y mod n = (x+1) mod n && y<=n) then
+    let g = ref f in
+    for i = n-1 downto y do
+      g := renomme_sommet !g i (i+1)
+    done;
+    let b = (y+1) mod (n+1) in
+    add !g (min (x ,b) (b,x))
+  else failwith "pas possible d'ajouter une face ici"
+       
   
   
 let rotation f k = 
@@ -98,6 +100,33 @@ let nombre_triangulation n =
   catalan (n-2)
 
 
+
+
+
+let triangu_sup t = 
+  let n = ordre t in
+  let b = ref (empty()) in
+  for i=0 to n-1 do
+    b := add !b (ajoute_face t (i,i+1))
+  done;
+  clean ~comp:egal !b
+
+
+
+let rec triangulations n = 
+(*calcule les triangulations du n-gone et les renvoie dans une boite*)
+  assert (n>=3);
+  if n=3 then add (empty()) (empty())
+  else 
+    let tri_inf = map triangu_sup (triangulations (n-1)) in
+    clean ~comp:egal (boite_it (fun x y -> union x y) tri_inf (empty()))
+
+
+
 (*
 La suite du module sert à compter le nombre d'arêtes en commun pour deux triangulations quelconques de même ordre*)
 
+
+let nombre_aretes_communes t1 t2 = 
+(* Pour deux triangulations t1 et t2, renvoie le nombre d'aretes que ces triangulations ont en commun*)
+  taille (intersection t1 t2)

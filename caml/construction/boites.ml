@@ -10,6 +10,14 @@ type 'a boite = {taille:int;
                  content: 'a ens;}
 
 
+let rec list_it f l b = match l with
+  |[] -> b
+  |x::r -> f x (list_it f r b)
+
+let rec boite_it f l b = match l.content with
+  |[] -> b
+  |x::r -> f x (boite_it f {taille=l.taille-1;content=r} b)
+
 let (vide: unit -> 'a ens) = fun () -> []
 let empty ()= {taille=0; content=vide()}
 
@@ -50,3 +58,16 @@ let rec union a b = match a.content,b.content with
   |x::r,y::l -> if x=y then add (union {taille=a.taille-1;content=r} {taille=b.taille-1;content=l}) x
                 else if x<y then add (union {taille=a.taille-1;content=r} b) x
                 else add (union a {taille=b.taille-1;content=l}) y
+
+let exists f b = List.exists f b.content
+
+
+let egal x y = x=y
+let rec clean ?(comp = egal) b = match b.content with
+  |[] -> empty()
+  |x::r -> let c = clean ~comp:comp {taille=b.taille-1; content=r} in
+           if exists (comp x) c then c
+           else add c x
+             
+
+
