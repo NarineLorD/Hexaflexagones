@@ -45,8 +45,7 @@ let for_all f b = for_all_ens f b.content
 
 
 let rec intersection a b = match a.content,b.content with
-  |[],_ -> {taille=0;content=[]}
-  |_,[] -> {taille=0;content=[]}
+  |[],_  |_,[] -> {taille=0;content=[]}
   |x::r,y::l -> if x=y then add (intersection {taille= a.taille -1;content=r} {taille=b.taille-1;content=l}) x 
                 else if x<y then intersection {taille=a.taille-1;content=r} b
                 else intersection a {taille=b.taille-1;content=l}
@@ -60,6 +59,13 @@ let rec union a b = match a.content,b.content with
                 else add (union a {taille=b.taille-1;content=l}) y
 
 let exists f b = List.exists f b.content
+
+(*produit: 'a boite -> 'b boite -> ('a*'b) boite
+renvoie la boite du produit cartésien de deux boites données*)
+let produit_liste a b = List.map (fun x -> List.map (fun y -> (x,y)) b) a
+let produit a b = {taille = a.taille*b.taille; content = produit_liste a.content b.content}
+           
+
 
 
 let egal x y = x=y
