@@ -21,6 +21,11 @@ let ajoute_face_naif f (x,y) =
 
 
 
+
+let recolorie f t = 
+  map (fun (a,b) -> (min t.(a) t.(b), max t.(a) t.(b))) f 
+
+
 let renomme_sommet f x y = 
 (* pour une triangulation f, deux entiers x  et y, si x est le nom d'une face de f (un sommet de la tiangulation),
 alors cette fonction doit renvoyer la triangulation g où x a été renommé en y.
@@ -35,12 +40,11 @@ Remarque: je ne me soucie pas de savoir si la couleur y est déjà utilisée dan
 let ajoute_face f (x,y) =
   let n = ordre f in
   if (y mod n = (x+1) mod n && y<=n) then
-    let g = ref f in
-    for i = n-1 downto y do
-      g := renomme_sommet !g i (i+1)
-    done;
+    let t = Array.init n (fun i -> i) in
+    for i = n-1 downto y do t.(i) <- i+1 done;
+    let g = recolorie f t in
     let b = (y+1) mod (n+1) in
-    add !g (min (x ,b) (b,x))
+    add g (min (x ,b) (b,x))
   else failwith "pas possible d'ajouter une face ici"
        
   
@@ -118,15 +122,21 @@ let rec triangulations n =
   assert (n>=3);
   if n=3 then add (empty()) (empty())
   else 
-    let tri_inf = map triangu_sup (triangulations (n-1)) in
-    clean ~comp:egal (boite_it (fun x y -> union x y) tri_inf (empty()))
+    boite_it (fun x y -> union x y) (map triangu_sup (triangulations (n-1))) (empty())
 
+let flexagones n = 
+  clean ~comp:equiv (triangulations n)
 
 
 (*
-La suite du module sert à compter le nombre d'arêtes en commun pour deux triangulations quelconques de même ordre*)
+La suite du module sert à compter le nombre d'arêtes en commun pour deux triangulations quelconques de même ordre
+
+Implémentation du parcours des graphes triangulations:
+******* Distance d'édition entre triangulations ******
+*)
 
 
 let nombre_aretes_communes t1 t2 = 
 (* Pour deux triangulations t1 et t2, renvoie le nombre d'aretes que ces triangulations ont en commun*)
   taille (intersection t1 t2)
+

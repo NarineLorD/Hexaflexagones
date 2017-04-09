@@ -1,14 +1,13 @@
-all: build_flexagons
+all: triangulations
 
 remake: CLEAN dep all
 
-modules:=btree boites triangulations  build_flexagons
+modules:= boites triangulations 
 
 cmo:=${modules:%=%.cmo}
 
-build_flexagons: ${cmo}
-	ocamlc -o final ${cmo}
-
+triangulations: ${cmo}
+	ocamlc -o final ${cmo}$
 
 dep: 
 	ocamldep *.mli *.ml > .depend
