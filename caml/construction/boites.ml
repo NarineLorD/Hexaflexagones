@@ -37,6 +37,9 @@ let rec is_in e x = match e with
   |y::r -> y=x || is_in r x 
 let est_dans b x = is_in b.content x
 
+let liste_to_boite l = {taille=List.length l; content = List.sort compare l}
+
+
 
 (*map garanti que si e est trié et que f est croissante pour l'ordre de e, alors map f e est trié, sinon rien du tout
 
