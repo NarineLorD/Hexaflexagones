@@ -3,7 +3,6 @@ Implémentatio d'un structure de recherche utilisée pour manipuler les triangul
 Ces boites sont en réalité des ensembles triés sur lesquels on peut faire les opérations classiques
  *)
 
-
 type 'a ens = 'a list
 
 type 'a boite = {taille:int;
@@ -41,25 +40,11 @@ let liste_to_boite l = {taille=List.length l; content = List.sort compare l}
 
 
 
-(*map garanti que si e est trié et que f est croissante pour l'ordre de e, alors map f e est trié, sinon rien du tout
-
-****** VERIFIER QUE L'ON APPLIQUE QUE DES FONCTIONS CROISSANTES AVEC MAP ********
-
-*)
-let map_ens f e = List.map f e
-let map f b = {taille=taille b; content = map_ens f b.content}
-
-let for_all_ens f e = List.for_all f e
-let for_all f b = for_all_ens f b.content
 
 
-let rec intersection a b = match a.content,b.content with
-  |[],_  |_,[] -> {taille=0;content=[]}
-  |x::r,y::l -> if x=y then add (intersection {taille= a.taille -1;content=r} {taille=b.taille-1;content=l}) x 
-                else if x<y then intersection {taille=a.taille-1;content=r} b
-                else intersection a {taille=b.taille-1;content=l}
+let sort boite = {taille=boite.taille; content= List.sort (Pervasives.compare) boite.content}
 
-
+<<<<<<< HEAD
 let rec union a b = match a.content,b.content with
   |[],_ -> b
   |_,[] -> a

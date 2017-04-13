@@ -1,16 +1,50 @@
 ############
 #REFERENCES#
 ############
+[1] Martin Gardner,Hexaflexagons and other mathematical diversions: The first scientific American book of mathematical puzzles and games, The University of Chicago Press,(1-14) 1988
 
-Hexaflexagon Catalog, Antônio Carlos M. de Queiroz  , http://www.coe.ufrj.br/~acmq/hexaflexagons/ (consulté le 16/03/2016
-Hexaflexagons and other mathematical diversions: The first scientific American book of mathematical puzzles and games  (), Martin Gardner, The University of Chicago Press,(1-14) 1988
-Flexagons (1957), C. O. Oakley & R. J. Wisner, American Mathematical Monthly n°64
-The theory of the flexagon (1960), Antony S Conrad,  RIAS Technical Report 60-24
+[2] Flexagons (1957), C. O. Oakley & R. J. Wisner, American Mathematical Monthly n°64
+
+[3] FLEXAGONS (1960), Antony S Conrad & Daniel K. Hartline,  RIAS Technical Report 62-11 (1962)
+
+[4] A bit of flexagon theory, David King, http://www.drking.org.uk/hexagons/flexagons/theory1.html (consulté le 16/03/2016)
+
+[5] Scott Shermann, Flexagons, http://loki3.com/flex/index.html (consulté le 17/03/2016)
+
+[6] Les Pook, Serious fun with flexagons, éditions Springer, 2009 (Je n'ai pas lu l'ouvrage, mais c'est le plus récent sur le sujet, ce pourquoi je le cite ici)
+
+[7] Antônio Carlos M. de Queiroz, Hexaflexagons, http://www.coe.ufrj.br/~acmq/hexaflexagons/ (consulté le 18/03/2017)
+
+[8] Harold V. McIntosh, REC-F for Flexagons, http://delta.cs.cinvestav.mx/~mcintosh/cellularautomata/FLEXAGONS_files/rec-f.pdf (publié en 2000, page consulté le 18/03/2017)
+
+[9] Mickaël Launay, Flexagones, https://www.youtube.com/playlist?list=PLNefH6S6myiO_5HBDdtP_r_LlCcVwA04I (vidéos publiées en 2015)
 
 ##############
 #COMMENTAIRES#
 ##############
+	On trouve en mathématiques ludiques d'innombrables objets de curiosité, plus fascinants les uns que les autres: pavages, carrés magiques, tours de cartes, origamis, d'innombrables jeux... Cette discipline est riche de formidables outils pédagogiques, de nombreux défis motivants. Les flexagones comptent parmi les jouets mathématiques trop peu connus.
+	Les hexaflexagones sont constitués d'une bande triangle équilatéraux en papier, pliée et collée à ses extrémités de façon à prendre la forme d'un hexagone. L’hexagone obtenu est plan et montre deux faces (une rouge une bleue par exemple), mais il est possible de plier puis déplier cet hexagone de façon à ce qu’il reprenne son aspect initial, à la seule différence qu’il présentera une face verte à la place de la rouge (par exemple, voir [9] pour une introduction plus complète). Ce sont donc des jouets et objets de curiosités, déterminés par une bande de papier pliée, présentant plusieurs faces dont certaines sont cachées dans les plis de l'objet, qu'on peut manipuler afin de dévoiler les faces cachées.
+	Les hexaflexagones furent découvert en 1939 par Arthur Stone, alors étudiant à Princeton. Il étudia les flexagones avec ses camarades B. Tuckerman, J. W. Tuckey, et R. Feynmann. Ce groupe de pionniers aurait construit une théorie mathématique des flexagones, mais n'a rien publié à l'époque. C'est Martin Gardner, le célèbre vulgarisateur de mathématiques, qui popularisa les flexagones aux États-Unis lors de sa première publication dans le magazine Scientific American: "Flexagons", en 1956. Cet article fur la véritable naissance du flexagone en tant que jouet mathématique, qui devient très populaire aux États-Unis pendant cette période. La famille des flexagone s’est depuis considérablement enrichie, on pourra notament consulter le site de Scott Sherman[5] pour une grande collection de flexagones. Certains mathématiciens fasciné s’intéressèrent aux flexagone en tant qu’objets combinatoires, dès 1957, C. O. Oakley et R. J. Wisner publient un article technique[2] sur une représentation des hexaflexagones comme certaines listes d’entiers définies récursivement, et en tirent de nombreuses conclusions combinatoires. En 1962, Antony S. Conrad et Daniel K. Hartline publient [3]: un rapport de 227 pages compilant la quasi-totalité des travaux effectués sur les flexagones à l'époque, ils décrivent notament des généralisations du concept de flexagone, leurs représentations et quelques méthodes de construction. Bien que des méthodes efficaces existent pour construire les flexagones, le processus peut s'avérer fastidieux lorsqu'on souhaite construire des flexagones de grande taille. C'est en 1999 et 2000 que les capacités graphiques de ordinateurs ont étés utilisées pour la conception des flexagones: A. C. M. de Qeiroz[7] a écrit en 1999 un programme en MSDOS construisant les patrons et représentations des hexaflexagones en utilisant les travaux de David King [4] sur la méthode de "reflécto-clonage". Citons également le travail de Harold V. McIntosh qui écrivit une application pour faciliter la construction de différents types de flexagones, elle est malheureusement écrit en REC pour les machines NeXTSTEP et par conséquent inutilisable de nos jours.
+	La majorité de la littérature concerne la construction des flexagones, laissant leur décoration aux soins de chacun. Pourtant en jouant avec les flexagones, il apparaît vite que les faces colorées ne se contentent pas de se substituer les unes aux autres. Dans l'exemple de l'hexaflexagone, chaque face, constituée de six triangles équilatéraux, est visible dans au moins deux configurations différentes, où l'on s'aperçoit que les triangles n'occupent pas la même place aux sein de la face. Ces déplacement sont particulièrement visible lorsque le coloriage de chaque face n'est pas uniforme, et fait émerger de nombreuses questions sur les façons de décorer les flexagons.
 
-	Depuis le début du XVIIIème siècle, les mathématiques atteignent des sommets de puissance et de raffinement.
-	Les hexaflexagones sont constitués d'une bande de papier pliée et collée à ses extrémités de façon à prendre la forme d'un hexagone (d'où le préfixe "hexa"). Leur intérêt est qu'il est possible de plier l'"hexagone" obtenu et de faire apparaître plus de deux faces différentes à l'hexagone.
-	Les hexaflexagones furent découvert en 1939 par Arthur Stone, alors étudiant à Princeton. Il étudia les flexagones avec ses camarades de classe B. Tuckerman, J. W. Tuckey, et R. Feynmann. Ce groupe de pionnier construisit une théorie mathématique des flexagones, mais n'a rien publié à l'époque. C'est Martin Gardner, le célèbre vulgarisateur de mathématiques, qui popularisa les flexagones aux États-Unis lors de sa première publication dans le magazine Scientific American: "Flexagons", en 1956. Les flexagones devinrent populaires non seulement en tant que jouets fascinants, mais également en tant qu'objets combinatoires à part entière 
+
+###############
+#PROBLEMATIQUE#
+###############
+Je me concentrerais sur les flexagones consitués de triangles équilatéraux (appelés hexaflexagones) afin d'en énoncer clairement les propriétés principales, d'en décrire les méthodes de construction. Je m'intéresserais en particulier à la question de l'écriture d'un programm informatique automatisant la construction de leurs patrons, étant donné que les deux programmes cités plus hauts sont rendus obsolètes par l'évolution de systèmes d'exploitation.
+
+
+
+
+
+
+
+
+###########
+#OBJECTIFS#
+###########
+Je propose plusieurs lignes directrices pour mon TIPE :
+1. Utiliser les représentations mathématiques des flexagones pour en étudier certaines propriétés
+2.Concevoir des algorithmes permettant de construire automatiquement les flexagones dans une représentation choisie, et les implanter en Python3 ou Ocaml afin d’étudier des propriétés statistiques des flexagones.
+3.Si possible, utiliser les fonctionnalités graphiques d’Ocaml ou Python3 pour permettre l’utilisation pratique de ces algorithmes (impression des patrons, visualisation des représentations)
+
