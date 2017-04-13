@@ -74,23 +74,16 @@ let egal f g =
 
 
 let orbite t = 
+  let n = ordre t in
   let liste = ref [] in
-  
+  for i = 0 to n-1 do
+    liste := (rotation t i)::(symetrie t i)::(!liste)
+  done;
+  !liste
 
 let equiv f g = 
   let n = ordre f in
-  let t = ref (egal f g) in
-  let h = ref g in
-  for i = 0 to n do
-    h := rotation !h 1;
-    t := !t || egal !h f;
-  done;
-  h := symetrie !h;
-  for i = 0 to n do
-    t := !t || egal !h f;
-    h := rotation !h 1;
-  done;
-  !t
+  List.exists (egal f) (orbite g)
                                  
 
 let check_rotation f k = 

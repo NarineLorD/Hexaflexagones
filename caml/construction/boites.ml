@@ -96,15 +96,23 @@ let boite_to_array b =
        in
        copie b.content 0;t
 
-
-
-
 let egalite x y = x=y
 let rec clean ?(comp = egalite) b = match b.content with
   |[] -> empty()
   |x::r -> let c = clean ~comp:comp {taille=b.taille-1; content=r} in
            if exists (comp x) c then c
            else add c x
-             
 
 
+(*
+Structure d'ensembles impérative, 
+les tables de hachage permettent des opérations de recherche plus rapide
+ *)
+module Ens = struct
+  type 'a ensemble = ('a, unit) Hashtbl.t
+  let (vide : int -> 'a ensemble) =
+    fun n -> Hashtbl.create n
+  let (add : 'a ensemble -> 'a -> unit) =
+    fun e x -> Hashtbl.add e x ()
+  let (mem : 'a ensemble-> 'a -> bool) =
+    fun e x -> Hashtbl.mem e x
