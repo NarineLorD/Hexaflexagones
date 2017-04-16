@@ -13,6 +13,7 @@ let ordre f =  f.ordre
   
 
 let copie_triangulation f = 
+  (*ne fonctionne que si les sommets sont étiquettés avec des entiers < ordre f *)
   let n = ordre f in
   let t = Array.make n (ref 0) in
   let rec copie_sommet s = match s with
@@ -45,25 +46,29 @@ let ajoute_face f (x,y) =
     begin
       for i = n-1 downto y do t.(i) <- i+1 done;
       recolorie g t;
-      let a,b = retrieve x f.sommets, retrieve (y+1) f.sommets in
+      let a,b = retrieve x g.sommets, retrieve (y+1) g.sommets in
       {sommets = (ref y)::g.sommets;aretes = (ref a,ref b)::g.aretes; ordre=n+1}
     end
   else failwith "pas possible d'ajouter une face ici"
        
   
-  
+
+let arrange l =   List.iter (fun (x,y) -> let t = !x in
+                          x:= min (!x) (!y); y:= max (t) (!y)) l
+
+
 let rotation f k = 
   let n = ordre f in
   let g = copie_triangulation f in
   List.iter (fun x -> x := (!x + k) mod n) g.sommets;
-  List.iter (fun (x,y) -> x:= min (!x) (!y); y:= max (!x) (!y)) g.aretes; 
+  arrange g.aretes; 
   g
 
 let symetrie f k = 
   let n = ordre f in
   let g = copie_triangulation f in
-  List.iter (fun x -> x := (n+n-1-k-k-(!x)) mod n) g.sommets;
-  List.iter (fun (x,y) -> x:= min (!x) (!y); y:= max (!x) (!y)) g.aretes;
+  List.iter (fun x -> x := ((2*(n-k)-1-(!x)) mod n)) g.sommets;
+  arrange g.aretes;
   g
 
 
