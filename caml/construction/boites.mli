@@ -16,6 +16,3 @@ val liste_to_boite: 'a list -> 'a boite
 
 val intersection: 'a boite -> 'a boite -> 'a boite
 val union: 'a boite -> 'a boite -> 'a boite
-
-val sort: 'a boite -> 'a boite
-

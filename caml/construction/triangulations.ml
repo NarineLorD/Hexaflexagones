@@ -3,7 +3,6 @@
 Implémentation de triangulations des polygones réguliers
 
  *)
-open Boites
 
 type triangulation = (int*int) boite
 
@@ -50,12 +49,12 @@ let ajoute_face f (x,y) =
 let rotation t k = 
   let n = ordre t in
   let plus (x,y) = let a,b = (x+k) mod n, (y+k) mod n in (min a b, max a b) in
-  map plus f
+  map plus t
 
 let symetrie t = 
   let n = ordre t in
   let sym (x,y) = (n-1-y, n-1-x) in
-  map sym f
+  map sym t
 
 let egal t u = 
   (ordre t = ordre u) && for_all (est_dans t)  u
