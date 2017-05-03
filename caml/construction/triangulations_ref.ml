@@ -67,7 +67,7 @@ let rotation f k =
 let symetrie f k = 
   let n = ordre f in
   let g = copie_triangulation f in
-  List.iter (fun x -> x := ((2*(n-k)-1-(!x)) mod n)) g.sommets;
+  List.iter (fun x -> x := ((n+k-(!x)) mod n)) g.sommets;
   arrange g.aretes;
   g
 
