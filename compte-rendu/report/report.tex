@@ -7,10 +7,10 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-\author{Raphaël Wormer}
+\author{Raphaël Wormser}
 \title{Hexaflexagones}
 \graphicspath{{Images/}}
-\linespread{1.15}
+\linespread{1.2}
 \usepackage{mathtools}
 \usepackage{tikz}
 
@@ -21,12 +21,9 @@
 
 
 
-
-
 \maketitle
 \tableofcontents
 
-\paragraph{Remerciements sincères}Céline sans qui ce travail n'aurais pas vu le jour.
 
 
 \section{Introduction}\label{intro}
@@ -93,7 +90,7 @@
 			$\Delta$ sépare la triangulation en deux triangulations de $r+2$ et $n-r-1$ côtés.\\
 			\begin{figure}[h]
 				\centering
-				\caption{Nombres de catalan:formule de récurrence}
+				\includegraphics[scale=0.2]{nombres_catalan.eps}
 			\end{figure}
 			Pour $r\in [0,\ldots,\:n-3]$, il y bijection entre les triangulations d'un $n$-gone convexe et les couples $(T_{n-r-1},T_{r+2})$ où $T_{i}$ est une triangulation d'un $i$-gone convexe.\\
 			Il y a donc $C_{r}C_{n-r-3}$ triangulations du $n$-gone, $r$ étant fixé.\\
@@ -105,7 +102,7 @@
 		        \forall n\in\mathbb{N},\; C_{n+1} = \sum_{r=0}^{n}{C_{r}C_{n-r}}
 		        \end{dcases*}
 			\]
-			Notons la série $F(x) = \sum\limits_{n=0}^{+\infty}{C_{n}x^{n}}$ qui converge pour $x\in[0,\frac{1}{4}[$.\\
+			Notons la série génératrice $f(x) = \sum\limits_{n=0}^{+\infty}{C_{n}x^{n}}$ qui converge pour $x\in[0,\frac{1}{4}[$.\\
 			Vu la formule de récurrence, $f(x)$ vérifie
 			$$f(x) = 1+x\sum_{n=1}^{+\infty}{\sum_{k=0}^{n-1}{C_{k}C_{n-1-k}x^{n-1}}} = 1+xf(x)^{2}$$
 			Par conséquent, $f(0)=1$, et $$\forall x\in]0,\frac{1}{4}[\;,\;\;
@@ -119,10 +116,11 @@
 		
 		
 		\subsubsection{Comptage des classes de symétrie}
-			$C_{n}$ compte le nombre totale de triangulations d'un $n$-gone convexe, par exemple:
+			
+			$C_{n}$ compte le nombre totale de triangulations d'un $n+2$-gone convexe.\\Par exemple,
+			ces deux triangulations du pentagone sont considérées comme différentes, et $C_{3} = 5$\\
 			\begin{figure}[h]
-			\centering
-			Ces deux triangulations du pentagone sont considérées comme différentes\\
+				\centering
 				\begin{tikzpicture}[thick,scale=0.5]
 				    \foreach \x in {1,2,...,5} {
 			        \draw (18+72*\x:4) -- (18+72+72*\x:4);
@@ -139,17 +137,21 @@
 					\draw (234:4) -- (18:4);		
 					\draw (90:4) -- (234:4);
 				\end{tikzpicture}
+				\caption{Deux triangulations du pentagone régulier}
 			\end{figure}
 			
 			Il est pourtant évident qu'elles représentent le même flexagone, ce premier dénombrement n'est donc pas satisfaisant.\\
-			Pour être réigoureux, les flexagones sont représentés par des graphes de triangulations, et deux graphes représentent le même flexagone si et seulement s'ils sont isomorphes.\\
-			En plongeant ces graphes dans les triangulations de polygones réguliers, le problème est de compter les classes de symétries des triangulations de polygones réguliers. Pour $n\geq 3$ fixé, les symétries considérées sont les rotations et reflexions qui laissent invariant le $n$-gone régulier. On doit donc compter les classes de symétries de l'esenbme $T_{n}$ des triangulations de polygone sous l'action du groupe diédral $D_{n}$.
+			Pour être rigoureux, les flexagones sont représentés par des graphes de triangulations, et deux graphes isomorphes représentent le même flexagone.\\
+			En plongeant ces graphes dans les triangulations de polygones réguliers, le nombre de flexagones d'ordre $n$ est donc le nombre de classes de symétries des triangulations du $n$-gone régulier. Pour $n\geq 3$ fixé, les symétries considérées sont les rotations et réflexions qui laissent invariant le $n$-gone régulier. On doit donc compter les classes de symétries de l'ensemble $T_{n}$ des triangulations de polygone sous l'action du groupe diédral $D_{n}$.\\
 			
-			$D_{n}$ admet la représentation par générateurs et relations suivante: $$D_{n} = \langle \sigma,\tau \;|\; \sigma^{n} = \tau^{2} = (\sigma\tau)^{2} = id\rangle$$.
+			$D_{n}$ admet la représentation par générateurs et relations suivante: $$D_{n} = \langle \rho,\tau \;|\; \rho^{n} = \tau^{2} = (\rho\tau)^{2} = id\rangle$$.
 			On peut donc appliquer la formule de Burnside : 
-			$$|T_{n}/D_{n}| = \dfrac{1}{|D_{n}|}\sum_{g\in D_{n}}{|Fix(g)|}$$
-			où $ | Fix(g) | = \lbrace t\in T_{n},\; g.t = t\rbrace$
-
+			$$F_{n} = |T_{n}/D_{n}| = \dfrac{1}{|D_{n}|}\sum_{g\in D_{n}}{|Fix(g)|}$$
+			où $ |Fix(g)| = \lbrace t\in T_{n},\; g.t = t\rbrace$, on obtient
+			$$F_{n} = \dfrac{1}{2n}\sum_{k=0}^{n-1}{|Fix(\rho^{k})|+|Fix(\tau\rho^{k})|}$$
+			
+			Il ne reste qu'à calculer.
+			
 \section{Programmation}
 
 	\subsection{Structures de données}
