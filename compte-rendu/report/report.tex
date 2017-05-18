@@ -12,7 +12,7 @@
 \graphicspath{{Images/}}
 \linespread{1.15}
 \usepackage{mathtools}
-
+\usepackage{tikz}
 
 
 \def\intv#1[#2..#3]{\mathopen{#1[}#2\mathrel{{.}\,{.}}\nobreak#3\mathclose{#1]}}
@@ -93,7 +93,7 @@
 			$\Delta$ sépare la triangulation en deux triangulations de $r+2$ et $n-r-1$ côtés.\\
 			\begin{figure}[h]
 				\centering
-				\includegraphics[scale=0.25]{nombres_catalan.eps}
+				\caption{Nombres de catalan:formule de récurrence}
 			\end{figure}
 			Pour $r\in [0,\ldots,\:n-3]$, il y bijection entre les triangulations d'un $n$-gone convexe et les couples $(T_{n-r-1},T_{r+2})$ où $T_{i}$ est une triangulation d'un $i$-gone convexe.\\
 			Il y a donc $C_{r}C_{n-r-3}$ triangulations du $n$-gone, $r$ étant fixé.\\
@@ -105,12 +105,50 @@
 		        \forall n\in\mathbb{N},\; C_{n+1} = \sum_{r=0}^{n}{C_{r}C_{n-r}}
 		        \end{dcases*}
 			\]
-			Notons alors la série formelle $$F(X) = \sum_{n=0}^{+\infty}{C_{n}X^{n}}$$
+			Notons la série $F(x) = \sum\limits_{n=0}^{+\infty}{C_{n}x^{n}}$ qui converge pour $x\in[0,\frac{1}{4}[$.\\
+			Vu la formule de récurrence, $f(x)$ vérifie
+			$$f(x) = 1+x\sum_{n=1}^{+\infty}{\sum_{k=0}^{n-1}{C_{k}C_{n-1-k}x^{n-1}}} = 1+xf(x)^{2}$$
+			Par conséquent, $f(0)=1$, et $$\forall x\in]0,\frac{1}{4}[\;,\;\;
+			f(x) = \dfrac{1-\sqrt{1-4x}}{2x}$$
+			et $\dfrac{1-\sqrt{1-4x}}{2x}$ se développe en série entière:
+			$$\dfrac{1-\sqrt{1-4x}}{2x} = \sum_{n=0}^{+\infty}{\dfrac{1}{n+1}\binom{2n}{n}x^{n}}$$
+			On en déduit pour $n\in\mathbb{N}$, $C_{n} = \dfrac{1}{n+1}\displaystyle\binom{2n}{n}$.\\
+			$(C_{n})_{n\in\mathbb{N}}$ est la suite des nombres de Catalan, nommé d'après Eugène Catalan.
 			
 
-		\subsubsection{Action de groupe, Classes de symétrie}
-
-
+		
+		
+		\subsubsection{Comptage des classes de symétrie}
+			$C_{n}$ compte le nombre totale de triangulations d'un $n$-gone convexe, par exemple:
+			\begin{figure}[h]
+			\centering
+			Ces deux triangulations du pentagone sont considérées comme différentes\\
+				\begin{tikzpicture}[thick,scale=0.5]
+				    \foreach \x in {1,2,...,5} {
+			        \draw (18+72*\x:4) -- (18+72+72*\x:4);
+			        \draw (18+72*\x:4.5) node{\x};
+					};
+					\draw (90:4) -- (306:4);		
+					\draw (90:4) -- (234:4);
+				\end{tikzpicture}
+				\begin{tikzpicture}[thick,scale=0.5]
+				    \foreach \x in {1,2,...,5} {
+			        \draw (18+72*\x:4) -- (18+72+72*\x:4);
+			        \draw (18+72*\x:4.5) node{\x};
+					};
+					\draw (234:4) -- (18:4);		
+					\draw (90:4) -- (234:4);
+				\end{tikzpicture}
+			\end{figure}
+			
+			Il est pourtant évident qu'elles représentent le même flexagone, ce premier dénombrement n'est donc pas satisfaisant.\\
+			Pour être réigoureux, les flexagones sont représentés par des graphes de triangulations, et deux graphes représentent le même flexagone si et seulement s'ils sont isomorphes.\\
+			En plongeant ces graphes dans les triangulations de polygones réguliers, le problème est de compter les classes de symétries des triangulations de polygones réguliers. Pour $n\geq 3$ fixé, les symétries considérées sont les rotations et reflexions qui laissent invariant le $n$-gone régulier. On doit donc compter les classes de symétries de l'esenbme $T_{n}$ des triangulations de polygone sous l'action du groupe diédral $D_{n}$.
+			
+			$D_{n}$ admet la représentation par générateurs et relations suivante: $$D_{n} = \langle \sigma,\tau \;|\; \sigma^{n} = \tau^{2} = (\sigma\tau)^{2} = id\rangle$$.
+			On peut donc appliquer la formule de Burnside : 
+			$$|T_{n}/D_{n}| = \dfrac{1}{|D_{n}|}\sum_{g\in D_{n}}{|Fix(g)|}$$
+			où $ | Fix(g) | = \lbrace t\in T_{n},\; g.t = t\rbrace$
 
 \section{Programmation}
 
